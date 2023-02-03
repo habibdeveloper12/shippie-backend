@@ -1,0 +1,5 @@
+.react-tabs__tab--selected{
+  color: red;
+  text-decoration: underline;
+  
+}

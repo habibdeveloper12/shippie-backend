@@ -1,0 +1,53 @@
+.track_form {
+  gap: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.tracking_field {
+  width: 385px !important;
+  padding-left: 40px;
+  background-image: url("../../../../../../public/track_icon.svg");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  top: 5px;
+  left: 60px;
+  padding-top: 0;
+  font-family: NeurialGrotesk;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #959da5;
+}
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.tracking_btn {
+  width: 161px;
+  height: 56px;
+  border: 1px solid #552d83;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background: transparent;
+  color: #552d83;
+  font-family: NeurialGrotesk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #552d83;
+}
+#login_input {
+  height: 56px;
+  border: 2px solid #552d83;
+  color: black;
+}
+input:focus{
+  border: 2px solid #2c045a; 
+}

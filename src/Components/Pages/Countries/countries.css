@@ -1,0 +1,45 @@
+
+.first{
+  background-image: url("https://cdn.sanity.io/images/bm4duuk0/production/f7cb6dae670a6bb40fdab73d1697e0fd9b01c925-4896x3264.jpg"); background-position: "center";
+}
+.second{
+  background: linear-gradient(to right, rgb(255, 195, 167), rgb(92, 101, 247));
+}
+.third{
+  color: rgb(132, 79, 250);
+}
+.first-main{
+  background-color: rgb(254, 212, 48)
+}
+.second-main{
+  box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px none; margin: 0px; padding: 0px; position: relative; max-width: 100%;
+  
+}
+.third-main{
+  box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px none; margin: 0px; padding: 0px; max-width: 100%;
+}
+.four-main{
+  display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px none; margin: 0px; padding: 0px;
+}
+.last-main{
+  background-color: RGB(254, 212, 48);
+}
+.make-first{
+  background-color: rgb(132, 79, 250);
+}
+.make-second{
+  color: rgb(255, 255, 255);
+}
+.make-third{
+  box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px none; margin: 0px; padding: 0px; position: relative; max-width: 100%;
+}
+.make-four{
+  box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px none; margin: 0px; padding: 0px; max-width: 100%;
+}
+.make-five{
+  display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px none; margin: 0px; padding: 0px;
+}
+.them{
+  background-image: url("../../../../public/tax_bg.webp");
+  background-size: cover;
+}
