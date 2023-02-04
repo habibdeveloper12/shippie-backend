@@ -13,7 +13,12 @@ const Order = (p) => {
               <br />
               <b>Recipient:</b> {p.recipient.name}
               <br />
-              <b>Status:</b> {["Action Pending","In Progress","Completed","Cancelled"][p.status-1]}
+              <b>Status:</b>{" "}
+              {
+                ["Action Pending", "In Progress", "Completed", "Cancelled"][
+                  p.status - 1
+                ]
+              }
               <br />
               <b>Date and Time:</b> {new Date(p.createdAt).toLocaleString()}
               <br />
@@ -21,33 +26,39 @@ const Order = (p) => {
             </p>
           </div>
         </div>
-        <div className="md:col-span-1 mt-4 md:mt-0 md:px-12 text-center grid justify-items-center">{p.status == 1 ? <>
-        <a
-          href={p.paymentLink}
-          className="text-sm md:text-base font-bold flex items-center p-1 text-purple-600"
-        >
-          Goto Checkout
-        </a>
-        <a
-          href={"/dashboard/orders/" + p._id}
-          className="text-sm md:text-base font-bold flex items-center p-1"
-        >
-          Remove from Cart
-        </a>
-        <a
-          href={"/dashboard/orders/" + p._id}
-          className="text-sm md:text-base font-bold flex items-center p-1"
-        >
-          Get all Details
-        </a>
-      </> :<>
-        <a
-          href={"/dashboard/orders/" + p._id}
-          className="text-sm md:text-base font-bold flex items-center p-1"
-        >
-          Get all Details
-        </a>
-      </>}</div>
+        <div className="md:col-span-1 mt-4 md:mt-0 md:px-12 text-center grid justify-items-center">
+          {p.status == 1 ? (
+            <>
+              <a
+                href={p.paymentLink}
+                className="text-sm md:text-base font-bold flex items-center p-1 text-purple-600"
+              >
+                Goto Checkout
+              </a>
+              <a
+                href={"/dashboard/orders/" + p._id}
+                className="text-sm md:text-base font-bold flex items-center p-1"
+              >
+                Remove from Cart
+              </a>
+              <a
+                href={"/dashboard/orders/" + p._id}
+                className="text-sm md:text-base font-bold flex items-center p-1"
+              >
+                Get all Details
+              </a>
+            </>
+          ) : (
+            <>
+              <a
+                href={"/dashboard/orders/" + p._id}
+                className="text-sm md:text-base font-bold flex items-center p-1"
+              >
+                Get all Details
+              </a>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
