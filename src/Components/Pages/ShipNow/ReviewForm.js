@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FedexAuth from '../../../service/apiService';
 import ClipLoader from "react-spinners/ClipLoader";
 import { prevStep } from '../../../store/formSlice';
+import CryptoJS from "crypto-js";
 
 const ReviewForm = () => {
   let [loading, setLoading] = useState(true);
@@ -17,6 +18,73 @@ const ReviewForm = () => {
   const form = useSelector(state => state.form);
   const dispatch = useDispatch();
   const { insurance, taxes_and_duties } = addons;
+
+  const onSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/shippings",
+        form
+      );
+      if (response.status === 201) {
+        handleCheckout(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCheckout = async ({ _id, sender, recipient }) => {
+    const cust_code = "001098";
+    const merchant_outlet_id = "01";
+    const terminal_id = "001";
+    const merchant_return_url = "http://localhost:3001/thanks";
+    const description = `Shipment by ${sender.first_name} ${sender.last_name} to ${recipient.name}`;
+    const currency = "SGD";
+    const amount = shippingRate*100;
+    const order_id = _id;
+    const user_fullname = `${sender.first_name} ${sender.last_name}`;
+
+    var hash = CryptoJS.HmacSHA1(
+      `${cust_code}${merchant_outlet_id}${terminal_id}${merchant_return_url}${description}${currency}${amount}${order_id}${user_fullname}`,
+      "OGVQ4KW90AMBRR5YA34YPLDI3ZJJANGU"
+    );
+    var signature = CryptoJS.enc.Hex.stringify(hash);
+    const hashed = signature.toUpperCase();
+
+    try {
+      const response = await axios.post(
+        "https://portalapi.oisbizcraft.com/api/payments",
+        {
+          order_id: order_id,
+          merchant_outlet_id: merchant_outlet_id,
+          terminal_id: terminal_id,
+          cust_code: cust_code,
+          merchant_return_url: merchant_return_url,
+          amount: amount,
+          currency: currency,
+          user_fullname: user_fullname,
+          description: description,
+          hash: hashed,
+        }
+      );
+
+      if (response.status === 200) {
+        try {
+          const res = await axios.put(
+            `http://localhost:5000/api/shippings/${_id}`,
+            { link: response.data.data.url }
+          );
+          if (res.status === 201) {
+            window.location.href = res.data.paymentLink;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -107,7 +175,7 @@ const ReviewForm = () => {
       <div className="flex mx-auto py-8 justify-center gap-4 md:gap-10">
         <button type="button" onClick={() => dispatch(prevStep())} className="pill-button button-hover border-[#844FFA] border-2   text-[#844FFA] font-bold hover:text-white hover:bg-[#844FFA] w-[160px] md:w-[180px] h-[40px] disabled:bg-disabled-purple disabled:cursor-not-allowed disabled:border-transparent rounded-2xl">Back</button>
 
-        <button type="submit" className="pill-button button-hover bg-light-purple text-white w-[160px] md:w-[180px] h-[40px] disabled:bg-disabled-purple disabled:cursor-not-allowed disabled:border-transparent rounded-2xl">Next</button>
+        <button type="submit" onClick={() => onSubmit(form)} className="pill-button button-hover bg-light-purple text-white w-[160px] md:w-[180px] h-[40px] disabled:bg-disabled-purple disabled:cursor-not-allowed disabled:border-transparent rounded-2xl">Next</button>
       </div>
     </div>
   )
