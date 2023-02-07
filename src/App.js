@@ -23,27 +23,25 @@ import AddBox from "./Components/Pages/PricesPage/RateCalculator/AddBox";
 function App() {
 
   // var data = JSON.stringify("");
-  
+
   // var xhr = new XMLHttpRequest();
   // xhr.withCredentials = true;
-  
+
   // xhr.addEventListener("readystatechange", function () {
   //   if (this.readyState === 4) {
   //     console.log(this.responseText);
   //   }
   // });
-  
+
   // xhr.open("POST", "https://apis-sandbox.fedex.com/track/v1/trackingnumbers");
   // xhr.setRequestHeader("Content-Type", "application/json");
   // xhr.setRequestHeader("X-locale", "en_US");
   // xhr.setRequestHeader("Authorization", "Bearer ");
   // xhr.send(data);
-  
-
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }} >
       <Navbar  ></Navbar>
-      <Routes>
+      <Routes>  
         <Route path="/" element={<HomePage />} />
         <Route path="/countries/:id" element={<Countries />} />
         <Route path="/ourPrices" element={<OurPrice />} />
@@ -56,14 +54,12 @@ function App() {
         <Route path="/dangerousgoods" element={<Goods />} />
         <Route path="/relocation" element={<Relocation />} />
         <Route path="/shipnow" element={<ShipNow />} />
-        <Route path="/signIn" element={< Login/>} />
-        <Route path="/signup" element={<Signup/>} />  
-        <Route path="/checkout" element={<Checkout/>} />  
-        <Route path="/track" element={<Track/>} />  
-      <Route path="/addbox" element={<AddBox/>} />
-        <Route path="/get-a-quote" element={<RateCalculator/>} />  
-      
-
+        <Route path="/signIn" element={< Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/track" element={<Track />} />
+        <Route path="/addbox" element={<AddBox />} />
+        <Route path="/get-a-quote" element={<RateCalculator />} />
       </Routes>
       <Footer></Footer>
     </div>

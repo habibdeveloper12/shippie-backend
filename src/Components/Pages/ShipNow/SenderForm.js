@@ -9,9 +9,9 @@ const SenderForm = () => {
     const dispatch = useDispatch();
     const { sender } = useSelector((state) => state.form);
     let [selectedCountry, setSelectedCountry] = useState("+65");
-    const { register, watch, formState: { errors }, setValue, clearErrors, handleSubmit } = useForm({defaultValues: sender});
+    const { register, watch, formState: { errors }, setValue, clearErrors, handleSubmit } = useForm({ defaultValues: sender });
     const [purpose, setPurpose] = useState(null);
-    
+
     useEffect(() => {
         register("purpose", { required: "Please pick a purpose" })
     }, [register, setValue]);
@@ -84,7 +84,7 @@ const SenderForm = () => {
                             id="shipping-from"
                             className="mt-1 mb-6 relative rounded-xl border border-border-dark-gray flex group w-full h-10 pl-3 disabled:bg-gray-2 disabled:text-subtext-gray"
                             // value={getValues("shipping_from")}
-                            {...register("shipping_from", setValue('shipping_from', 'Singapore'))}
+                            {...register("shipping_from", setValue('country', 'SG'))}
                         />
                         <div className="group">
                             <label className="block font-normal text-subheading-gray text-sm group-focus-within:text-dark-purple" for="senderMobileNo">Sender's Mobile</label>

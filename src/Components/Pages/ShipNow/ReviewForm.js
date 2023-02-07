@@ -10,18 +10,17 @@ const ReviewForm = () => {
   let [color, setColor] = useState("#6213CB");
   const [authToken, setAuthToken] = useState(null);
   const [shippingRate, setShippingRate] = useState(null);
-
   const [shippingCost, setShippingCost] = useState(0);
 
   const { addons } = useSelector(state => state.form);
   const form = useSelector(state => state.form);
   const dispatch = useDispatch();
   const { insurance, taxes_and_duties } = addons;
-
+  console.log(form)
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.post("http://localhost:8300/getShippingRate", form);
+        const res = await axios.post("http://localhost:5000/getShippingRate", form);
         console.log(res);
         setShippingRate(res.data.shippingRate);
         setLoading(false)
@@ -34,7 +33,7 @@ const ReviewForm = () => {
 
   if (loading) {
     return <ClipLoader
-      color={color}
+      color={color}   
       loading={loading}
       size={150}
       aria-label="Loading Spinner"
