@@ -154,9 +154,7 @@ const ReviewForm = () => {
               <p className="">Shipping</p>
               <p className=" text-[#6E41E2] whitespace-nowrap">SGD {" "}
                 <span id="total-shipping-cost">
-                  {
-                    shippingRate
-                  }
+    {shippingRate}
                 </span></p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-[70%_30%] text-left gap-x-20 md:gap-x-0">
