@@ -89,7 +89,7 @@ const ReviewForm = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.post("http://localhost:5000/getShippingRate", form);
+        const res = await axios.post("http://localhost:5000/api/getShippingRate", form);
         console.log(res);
         setShippingRate(res.data.shippingRate);
         setLoading(false)
