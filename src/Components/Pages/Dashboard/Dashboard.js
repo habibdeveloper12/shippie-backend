@@ -19,13 +19,17 @@ const Dashboard = () => {
   );
 
   let fetchData = () => {
-    fetch("http://localhost:5000/api/orders/" + userid)
+    fetch(
+      (process.env.NODE_ENV === "production"
+        ? "/api/orders/"
+        : "http://localhost:5000/api/orders/") + userid
+    )
       .then((response) => response.json())
       .then((json) => sortOrders(json))
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => fetchData(),[]);
+  useEffect(() => fetchData(), []);
 
   const [tab0, setTab0] = useState(loading);
   const [tab1, setTab1] = useState(loading);
@@ -45,10 +49,14 @@ const Dashboard = () => {
     sorted.map((curElem, i) => {
       if (curElem.length !== 0) {
         if (i === 0) setTab0(curElem.map((c) => <Order key={c._id} {...c} />));
-        else if (i === 1) setTab1(curElem.map((c, i) => <Order key={c._id} {...c} />));
-        else if (i === 2) setTab2(curElem.map((c, i) => <Order key={c._id} {...c} />));
-        else if (i === 3) setTab3(curElem.map((c, i) => <Order key={c._id} {...c} />));
-        else if (i === 4) setTab4(curElem.map((c, i) => <Order key={c._id} {...c} />));
+        else if (i === 1)
+          setTab1(curElem.map((c, i) => <Order key={c._id} {...c} />));
+        else if (i === 2)
+          setTab2(curElem.map((c, i) => <Order key={c._id} {...c} />));
+        else if (i === 3)
+          setTab3(curElem.map((c, i) => <Order key={c._id} {...c} />));
+        else if (i === 4)
+          setTab4(curElem.map((c, i) => <Order key={c._id} {...c} />));
       } else eval("setTab" + i + "(nodata)");
     });
     // console.log(sorted);
