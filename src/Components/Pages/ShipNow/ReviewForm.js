@@ -29,6 +29,7 @@ const ReviewForm = () => {
       );
       if (response.status === 201) {
         handleCheckout(response.data);
+        console.log(response.data)
       }
     } catch (error) {
       console.log(error);
@@ -102,8 +103,8 @@ const ReviewForm = () => {
             : "http://localhost:5000/api/getShippingRate",
           form
         );
-        console.log(res);
-        setShippingRate(res.data.shippingRate);
+        console.log("response",res);
+        setShippingRate(res.data);
         setLoading(false);
         return res.data;
       } catch (error) {
