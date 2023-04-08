@@ -7,7 +7,6 @@ import ItemFields from './ItemFields';
 import PackingBlock from './PackingComponent/PackingBlock';
 
 const PackageFields = ({ control, register, setValue, watch, errors, getValues, clearErrors, packageSchema }) => {
-
     const { fields, remove } = useFieldArray({
         control,
         name: "packages"
@@ -202,6 +201,11 @@ const PackageFields = ({ control, register, setValue, watch, errors, getValues, 
             })}
 
             <AddPackage setValue={setValue} getValues={getValues} packageSchema={packageSchema} />
+
+
+
+
+
         </div>
     )
 }

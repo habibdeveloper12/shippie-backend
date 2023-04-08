@@ -19,6 +19,8 @@ import Navbar from "./Components/Shared/Navbar/Navbar";
 import Track from "./Components/Pages/HomePage/Fedex/Track";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import AddBox from "./Components/Pages/PricesPage/RateCalculator/AddBox";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -41,7 +43,16 @@ function App() {
   return (
     <div style={{ fontFamily: 'Montserrat, sans-serif' }} >
       <Navbar  ></Navbar>
-      <Routes>  
+      <ToastContainer 
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+/>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/countries/:id" element={<Countries />} />
         <Route path="/ourPrices" element={<OurPrice />} />

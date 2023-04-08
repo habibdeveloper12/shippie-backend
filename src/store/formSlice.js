@@ -6,6 +6,7 @@ const formSlice = createSlice({
         currentStep: 1,
         sender: {},
         recipient: {},
+        date: "",
         packages: [
             {
                 packing: "",
@@ -20,6 +21,7 @@ const formSlice = createSlice({
                 items_total_value: 0,
             }
         ],
+
         addons: {
             insurance: { insured: false, value: 0 },
             taxes_and_duties: { payer: "receiver", value: 0 }
@@ -60,11 +62,12 @@ const formSlice = createSlice({
             state.packages = action.payload;
             state.currentStep += 1;
         },
-
+        updateDate: (state, action) => {
+            state.date = action.payload
+        },
         addPackage: (state, action) => {
             state.packages.push(action.payload);
         },
-
         setAddOns: (state, action) => {
             state.addOns = action.payload;
         },
@@ -78,6 +81,6 @@ const formSlice = createSlice({
     }
 });
 
-export const { setForm, updateInsurance, updateTaxAndDuties, updateTotalCost, nextStep, prevStep, setSender, setRecipient, setPackage, setAddOns, resetForm } = formSlice.actions;
+export const { setForm, updateInsurance, updateTaxAndDuties, updateTotalCost, nextStep, prevStep, setSender, setRecipient, setPackage, setAddOns, resetForm, updateDate } = formSlice.actions;
 
 export default formSlice;

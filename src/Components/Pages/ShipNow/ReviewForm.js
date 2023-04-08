@@ -2,22 +2,39 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FedexAuth from "../../../service/apiService";
+import { useLocation } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import { prevStep } from "../../../store/formSlice";
 import CryptoJS from "crypto-js";
-
+import { daysOfWeek } from "../../../util/countries";
+import { toast } from "react-toastify";
 const ReviewForm = () => {
+  const location = useLocation();
   let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("#6213CB");
-  const [authToken, setAuthToken] = useState(null);
-  const [shippingRate, setShippingRate] = useState(null);
-  const [shippingCost, setShippingCost] = useState(0);
+  const color = useState("#6213CB");
+  const [shippingRate, setShippingRate] = useState(20);
 
+  const [shippingDetails, setShippingDetails] = useState({
+    firstService: {
+      serviceName: "",
+      date: "",
+      cost: "",
+    },
+    secondService: {
+      serviceName: "",
+      date: "",
+      cost: "",
+    }
+  });
   const { addons } = useSelector((state) => state.form);
   const form = useSelector((state) => state.form);
+
   const dispatch = useDispatch();
   const { insurance, taxes_and_duties } = addons;
-  console.log(form);
+  const onRadioChange = (e) => {
+    setShippingRate(e.target.value);
+  };
+
 
   const onSubmit = async () => {
     try {
@@ -28,7 +45,7 @@ const ReviewForm = () => {
         form
       );
       if (response.status === 201) {
-        handleCheckout(response.data);
+        handleCheckout(form);
         console.log(response.data)
       }
     } catch (error) {
@@ -44,7 +61,7 @@ const ReviewForm = () => {
       process.env.NODE_ENV === "production"
         ? "/thanks"
         : "http://localhost:3001/thanks";
-    const description = `Shipment by ${sender.first_name} ${sender.last_name} to ${recipient.name}`;
+    const description = `Shipment by ${sender.first_name} ${sender.last_name} to ${recipient.name}  `;
     const currency = "SGD";
     const amount = shippingRate * 100;
     const order_id = _id;
@@ -93,7 +110,7 @@ const ReviewForm = () => {
       console.log(error);
     }
   };
-
+  // console.log("shipping Details", shippingDetails)
   useEffect(() => {
     (async () => {
       try {
@@ -103,11 +120,38 @@ const ReviewForm = () => {
             : "http://localhost:5000/api/getShippingRate",
           form
         );
-        console.log("response",res);
-        setShippingRate(res.data);
+        console.log(res.data.shippingRate)
+        const data = res.data.shippingRate;
+        const firstService = data[0];
+        const secondService = data[1];
+
+        const formatServiceDate = (service) => {
+          const commitDate = service.commit?.dateDetail
+          if (!commitDate) {
+            return "";
+          }
+          const transformDate = new Date(commitDate.dayFormat)
+          const formattedDate = `${commitDate.dayOfWeek}, ${transformDate.getDate()} ${daysOfWeek[transformDate.getMonth()]} ${transformDate.getFullYear()}`
+          return formattedDate;
+        };
+
+        setShippingDetails({
+          firstService: {
+            serviceName: firstService.serviceName,
+            date: formatServiceDate(firstService),
+            cost: firstService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes,
+          },
+          secondService: {
+            serviceName: secondService.serviceName,
+            date: formatServiceDate(secondService),
+            cost: secondService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes,
+          },
+        });
         setLoading(false);
         return res.data;
       } catch (error) {
+        toast.error("Something went wrong, please try again later")
+        window.location.href = "/"
         console.error(error);
       }
     })();
@@ -124,7 +168,7 @@ const ReviewForm = () => {
       />
     );
   }
-
+  // console.log("shipping Details ", shippingDetails)
   return (
     <div>
       <div className="bg-white text-center w-full md:rounded-xl py-8">
@@ -149,59 +193,54 @@ const ReviewForm = () => {
             })}
           </tbody>
         </table>
-        <div className="mt-8 mb-1.5">
-          <p className="whitespace-pre-line">Quote (TBC at warehouse):</p>
-        </div>
-        <div className="flex justify-center items-center gap-3">
-          <p className="font-bold text-dark-purple">
-            SGD{" "}
-            <span id="total">
-              {Number(insurance.value) +
-                Number(taxes_and_duties.value) +
-                Number(shippingRate)}
-            </span>
-          </p>
-          <svg
-            width="16px"
-            height="12px"
-            className="w-[14px] h-[8px] transition-transform duration-300 ease-in-out -rotate-180"
-            viewBox="0 0 16 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M1 1L8 9L15 1"
-              stroke="#373F41"
-              strokeWidth="2"
-              strokeLinecap="round"
-            ></path>
-          </svg>
-        </div>
-        <div className="block mt-4">
-          <div className="grid md:grid-cols-2 md:auto-rows-auto justify-center md:w-[60%] mx-auto gap-x-16 gap-y-2">
-            <div className="grid grid-cols-2 md:grid-cols-[70%_30%] text-left gap-x-20 md:gap-x-0">
-              <p className="">Shipping</p>
-              <p className=" text-[#6E41E2] whitespace-nowrap">SGD {" "}
-                <span id="total-shipping-cost">
-    {shippingRate}
-                </span></p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-[70%_30%] text-left gap-x-20 md:gap-x-0">
-              <p className="">Taxes</p>
-              <p className=" text-[#6E41E2] whitespace-nowrap">
-                SGD <span id="total-taxes">{taxes_and_duties.value}</span>
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-[70%_30%] text-left gap-x-20 md:gap-x-0">
-              <p className="">Insurance</p>
-              <p className=" text-[#6E41E2] whitespace-nowrap">
-                SGD <span id="insurance">{insurance.value}</span>
-              </p>
-            </div>
+      </div>
+
+
+      <div className="flex justify-between items-center bg-white rounded-lg shadow-md px-6 py-4">
+        <label className="flex items-center">
+          <input type="radio" name="shipping" value="standard" onChange={onRadioChange} />
+          <div>
+            <p className="font-bold text-lg text-dark-purple">{shippingDetails?.firstService?.serviceName}</p>
+            <p className="text-sm text-gray-500">Delivery on {shippingDetails?.firstService?.date}</p>
           </div>
+        </label>
+        <div className="flex items-center">
+          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.firstService?.cost}</p>
+          <div className="rounded-full bg-green-100 h-8 w-8 flex justify-center items-center">
+            <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM3.293 7.707a1 1 0 011.414 0L7 9.586l4.293-4.293a1 1 0 011.414 0l.707.707a1 1 0 010 1.414L8.414 11l4.293 4.293a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414 0L10 12.414l-4.293 4.293a1 1 0 01-1.414 0l-.707-.707a1 1 0 010-1.414L8.586 11 3.293 6.707a1 1 0 010-1.414l.707-.707z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+
         </div>
       </div>
+      <div className="flex justify-between items-center bg-white rounded-lg shadow-md px-6 py-4">
+        <label className="flex items-center">
+          <input type="radio" name="shipping" value="not standar" onChange={onRadioChange} />
+          <div>
+            <p className="font-bold text-lg text-dark-purple">{shippingDetails?.secondService?.serviceName}</p>
+            <p className="text-sm text-gray-500">Delivery on {shippingDetails?.secondService?.date}</p>
+          </div>
+        </label>
+        <div className="flex items-center">
+          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.secondService?.cost}</p>
+          <div className="rounded-full bg-green-100 h-8 w-8 flex justify-center items-center">
+            <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM3.293 7.707a1 1 0 011.414 0L7 9.586l4.293-4.293a1 1 0 011.414 0l.707.707a1 1 0 010 1.414L8.414 11l4.293 4.293a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414 0L10 12.414l-4.293 4.293a1 1 0 01-1.414 0l-.707-.707a1 1 0 010-1.414L8.586 11 3.293 6.707a1 1 0 010-1.414l.707-.707z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+
+        </div>
+      </div>
+
       <div className="flex mx-auto py-8 justify-center gap-4 md:gap-10">
         <button
           type="button"
