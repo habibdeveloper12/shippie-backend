@@ -4,8 +4,8 @@ import NeedFragilePacking from './PackingComponent/NeedFragilePacking';
 import NeedPacking from './PackingComponent/NeedPacking';
 import NoPacking from './PackingComponent/NoPacking';
 
-const SelectPacking = ({ handlePacking, packageId }) => {
-    const { watch } = useFormContext();
+const SelectPacking = ({ handlePacking, packageId, selectedPackage}) => {
+    const { watch } = useFormContext(); 
     const packing = watch(`packages[${packageId}.packing]`);
 
     return (
@@ -14,21 +14,21 @@ const SelectPacking = ({ handlePacking, packageId }) => {
                 <button
                     type="button"
                     className={`form-input w-full md:w-[28%] h-[55px] hover:bg-dark-purple hover:text-white hover:border-transparent ${packing === "No Need Packing" && "bg-light-purple text-white font-semibold border-transparent"}`}
-                    onClick={() => handlePacking("No Need Packing", packageId)}
+                    onClick={() => handlePacking("No Need Packing")}
                 >
                     No Need Packing
                 </button>
                 <button
                     type="button"
                     className={`form-input w-full md:w-[28%] h-[55px] hover:bg-dark-purple hover:text-white hover:border-transparent ${packing === "Need Packing" && "bg-light-purple text-white font-semibold border-transparent"}`}
-                    onClick={() => handlePacking("Need Packing", packageId)}
+                    onClick={() => handlePacking("Need Packing")}
                 >
                     Need Packing
                 </button>
                 <button
                     type="button"
                     className={`form-input w-full md:w-[28%] h-[55px] hover:bg-dark-purple hover:text-white hover:border-transparent ${packing === "Need Fragile Packing" && "bg-light-purple text-white font-semibold border-transparent"}`}
-                    onClick={() => handlePacking("Need Fragile Packing", packageId)}
+                    onClick={() => handlePacking("Need Fragile Packing")}
                 >
                     Need Fragile Packing
                 </button>

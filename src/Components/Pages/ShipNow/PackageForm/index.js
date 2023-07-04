@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { FormProvider, useFieldArray, useForm, useFormContext } from "react-hook-form";
+import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { updateTotalCost } from "../../../../store/formSlice";
 import AddPackage from "./AddPackage";
 import ItemFields from "./ItemFields";
 import PackingBlock from "./PackingBlock";
@@ -103,7 +102,7 @@ const PackageForm = () => {
                                 <p className="text-error-red h-4  mt-6 md:mt-2  text-center">
                                     Please ensure all fields are filled to minimize
                                 </p>
-                                <SelectPacking handlePacking={handlePacking} packageId={index} />
+                                <SelectPacking handlePacking={handlePacking} packageId={index}  />
                                 <div className="bg-bg-purple pt-4 md:pt-8 md:mt-0 scroll-mt-[80px]">
                                     <div className="md:mb-4">
                                         <PackingBlock />

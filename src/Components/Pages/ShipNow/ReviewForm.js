@@ -12,7 +12,7 @@ const ReviewForm = () => {
   const location = useLocation();
   let [loading, setLoading] = useState(true);
   const color = useState("#6213CB");
-  const [shippingRate, setShippingRate] = useState(20);
+  const [shippingRate, setShippingRate] = useState();
 
   const [shippingDetails, setShippingDetails] = useState({
     firstService: {
@@ -63,7 +63,7 @@ const ReviewForm = () => {
         : "http://localhost:3001/thanks";
     const description = `Shipment by ${sender.first_name} ${sender.last_name} to ${recipient.name}  `;
     const currency = "SGD";
-    const amount = shippingRate * 100;
+    const amount = +shippingRate;
     const order_id = _id;
     const user_fullname = `${sender.first_name} ${sender.last_name}`;
 
@@ -139,12 +139,12 @@ const ReviewForm = () => {
           firstService: {
             serviceName: firstService.serviceName,
             date: formatServiceDate(firstService),
-            cost: firstService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes,
+            cost: Math.abs(firstService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes * 1.75),
           },
           secondService: {
             serviceName: secondService.serviceName,
             date: formatServiceDate(secondService),
-            cost: secondService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes,
+            cost: Math.abs(secondService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes * 1.75),
           },
         });
         setLoading(false);
@@ -156,7 +156,7 @@ const ReviewForm = () => {
       }
     })();
   }, []);
-
+console.log("shippingDetails", shippingRate)
   if (loading) {
     return (
       <ClipLoader
@@ -198,14 +198,14 @@ const ReviewForm = () => {
 
       <div className="flex justify-between items-center bg-white rounded-lg shadow-md px-6 py-4">
         <label className="flex items-center">
-          <input type="radio" name="shipping" value="standard" onChange={onRadioChange} />
+          <input type="radio" name="shipping" value={shippingDetails?.firstService?.cost} onChange={onRadioChange} />
           <div>
             <p className="font-bold text-lg text-dark-purple">{shippingDetails?.firstService?.serviceName}</p>
             <p className="text-sm text-gray-500">Delivery on {shippingDetails?.firstService?.date}</p>
           </div>
         </label>
         <div className="flex items-center">
-          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.firstService?.cost}</p>
+          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.firstService?.cost} SGD</p>
           <div className="rounded-full bg-green-100 h-8 w-8 flex justify-center items-center">
             <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -220,14 +220,14 @@ const ReviewForm = () => {
       </div>
       <div className="flex justify-between items-center bg-white rounded-lg shadow-md px-6 py-4">
         <label className="flex items-center">
-          <input type="radio" name="shipping" value="not standar" onChange={onRadioChange} />
+          <input type="radio" name="shipping" value={shippingDetails?.secondService?.cost} onChange={onRadioChange} />
           <div>
             <p className="font-bold text-lg text-dark-purple">{shippingDetails?.secondService?.serviceName}</p>
             <p className="text-sm text-gray-500">Delivery on {shippingDetails?.secondService?.date}</p>
           </div>
         </label>
         <div className="flex items-center">
-          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.secondService?.cost}</p>
+          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.secondService?.cost} SGD</p>
           <div className="rounded-full bg-green-100 h-8 w-8 flex justify-center items-center">
             <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
               <path

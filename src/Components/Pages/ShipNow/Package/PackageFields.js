@@ -13,10 +13,12 @@ const PackageFields = ({ control, register, setValue, watch, errors, getValues, 
     });
 
     console.log(fields);
+    const [selectPacking,setSelectPacking]=React.useState(null)
 
     const handlePacking = (packing, packageId) => {
         setValue(`packages.${[packageId]}.packing`, packing);
         clearErrors(`packages.${[packageId]}.packing`);
+        setSelectPacking(packing)
     };
 
     const handleOptionChange = (e) => {
@@ -61,7 +63,7 @@ const PackageFields = ({ control, register, setValue, watch, errors, getValues, 
                                 Please ensure all fields are filled to minimize
                             </p>
 
-                            <SelectPacking handlePacking={handlePacking} packageId={index} watch={watch} />
+                            <SelectPacking handlePacking={handlePacking} packageId={index} watch={watch} selected={selectPacking} />
 
                             <div className="bg-bg-purple pt-4 md:pt-8 md:mt-0 scroll-mt-[80px]">
                                 <div className="md:mb-4">
