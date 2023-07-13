@@ -19,11 +19,11 @@ import Navbar from "./Components/Shared/Navbar/Navbar";
 import Track from "./Components/Pages/HomePage/Fedex/Track";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import AddBox from "./Components/Pages/PricesPage/RateCalculator/AddBox";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Product from "./Components/Pages/product";
 
 function App() {
-
   // var data = JSON.stringify("");
 
   // var xhr = new XMLHttpRequest();
@@ -41,19 +41,21 @@ function App() {
   // xhr.setRequestHeader("Authorization", "Bearer ");
   // xhr.send(data);
   return (
-    <div style={{ fontFamily: 'Montserrat, sans-serif' }} >
-      <Navbar  ></Navbar>
-      <ToastContainer 
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-/>
+    <div style={{ fontFamily: "Montserrat, sans-serif" }}>
+      <Navbar></Navbar>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/product/" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="/countries/:id" element={<Countries />} />
         <Route path="/ourPrices" element={<OurPrice />} />
         <Route path="/rateCalculator" element={<RateCalculator />} />
@@ -65,7 +67,7 @@ function App() {
         <Route path="/dangerousgoods" element={<Goods />} />
         <Route path="/relocation" element={<Relocation />} />
         <Route path="/shipnow" element={<ShipNow />} />
-        <Route path="/signIn" element={< Login />} />
+        <Route path="/signIn" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/track" element={<Track />} />

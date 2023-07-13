@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
 import logo from "../../../Assect/logo.png";
+import Header from "../../Pages/product/UI/Header";
 const Navbar = () => {
   // For Menu
   const ref = useRef();
@@ -182,7 +183,7 @@ const Navbar = () => {
               >
                 Ship Now
               </NavLink>
-
+              <Header />
               {user ? (
                 <div className="dropdown dropdown-end">
                   <label
