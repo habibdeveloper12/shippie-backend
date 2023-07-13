@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FedexAuth from "../../../service/apiService";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { prevStep } from "../../../store/formSlice";
 import CryptoJS from "crypto-js";
@@ -24,7 +24,7 @@ const ReviewForm = () => {
       serviceName: "",
       date: "",
       cost: "",
-    }
+    },
   });
   const { addons } = useSelector((state) => state.form);
   const form = useSelector((state) => state.form);
@@ -34,7 +34,6 @@ const ReviewForm = () => {
   const onRadioChange = (e) => {
     setShippingRate(e.target.value);
   };
-
 
   const onSubmit = async () => {
     try {
@@ -46,7 +45,7 @@ const ReviewForm = () => {
       );
       if (response.status === 201) {
         handleCheckout(form);
-        console.log(response.data)
+        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
@@ -54,7 +53,8 @@ const ReviewForm = () => {
   };
 
   const handleCheckout = async ({ _id, sender, recipient }) => {
-    const cust_code = "001098";
+    // const cust_code = "001098";
+    const cust_code = "001010";
     const merchant_outlet_id = "01";
     const terminal_id = "001";
     const merchant_return_url =
@@ -63,7 +63,8 @@ const ReviewForm = () => {
         : "http://localhost:3001/thanks";
     const description = `Shipment by ${sender.first_name} ${sender.last_name} to ${recipient.name}  `;
     const currency = "SGD";
-    const amount = +shippingRate;
+    // const amount = +shippingRate;
+    const amount = 10;
     const order_id = _id;
     const user_fullname = `${sender.first_name} ${sender.last_name}`;
 
@@ -120,18 +121,22 @@ const ReviewForm = () => {
             : "http://localhost:5000/api/getShippingRate",
           form
         );
-        console.log(res.data.shippingRate)
+        console.log(res.data.shippingRate);
         const data = res.data.shippingRate;
         const firstService = data[0];
         const secondService = data[1];
 
         const formatServiceDate = (service) => {
-          const commitDate = service.commit?.dateDetail
+          const commitDate = service.commit?.dateDetail;
           if (!commitDate) {
             return "";
           }
-          const transformDate = new Date(commitDate.dayFormat)
-          const formattedDate = `${commitDate.dayOfWeek}, ${transformDate.getDate()} ${daysOfWeek[transformDate.getMonth()]} ${transformDate.getFullYear()}`
+          const transformDate = new Date(commitDate.dayFormat);
+          const formattedDate = `${
+            commitDate.dayOfWeek
+          }, ${transformDate.getDate()} ${
+            daysOfWeek[transformDate.getMonth()]
+          } ${transformDate.getFullYear()}`;
           return formattedDate;
         };
 
@@ -139,24 +144,30 @@ const ReviewForm = () => {
           firstService: {
             serviceName: firstService.serviceName,
             date: formatServiceDate(firstService),
-            cost: Math.abs(firstService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes * 1.75),
+            cost: Math.abs(
+              firstService.ratedShipmentDetails[0]
+                .totalNetChargeWithDutiesAndTaxes * 1.75
+            ),
           },
           secondService: {
             serviceName: secondService.serviceName,
             date: formatServiceDate(secondService),
-            cost: Math.abs(secondService.ratedShipmentDetails[0].totalNetChargeWithDutiesAndTaxes * 1.75),
+            cost: Math.abs(
+              secondService.ratedShipmentDetails[0]
+                .totalNetChargeWithDutiesAndTaxes * 1.75
+            ),
           },
         });
         setLoading(false);
         return res.data;
       } catch (error) {
-        toast.error("Something went wrong, please try again later")
-        window.location.href = "/"
+        toast.error("Something went wrong, please try again later");
+        window.location.href = "/";
         console.error(error);
       }
     })();
   }, []);
-console.log("shippingDetails", shippingRate)
+  console.log("shippingDetails", shippingRate);
   if (loading) {
     return (
       <ClipLoader
@@ -195,19 +206,33 @@ console.log("shippingDetails", shippingRate)
         </table>
       </div>
 
-
       <div className="flex justify-between items-center bg-white rounded-lg shadow-md px-6 py-4">
         <label className="flex items-center">
-          <input type="radio" name="shipping" value={shippingDetails?.firstService?.cost} onChange={onRadioChange} />
+          <input
+            type="radio"
+            name="shipping"
+            value={shippingDetails?.firstService?.cost}
+            onChange={onRadioChange}
+          />
           <div>
-            <p className="font-bold text-lg text-dark-purple">{shippingDetails?.firstService?.serviceName}</p>
-            <p className="text-sm text-gray-500">Delivery on {shippingDetails?.firstService?.date}</p>
+            <p className="font-bold text-lg text-dark-purple">
+              {shippingDetails?.firstService?.serviceName}
+            </p>
+            <p className="text-sm text-gray-500">
+              Delivery on {shippingDetails?.firstService?.date}
+            </p>
           </div>
         </label>
         <div className="flex items-center">
-          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.firstService?.cost} SGD</p>
+          <p className="font-bold text-lg text-green-500 mr-2">
+            {shippingDetails?.firstService?.cost} SGD
+          </p>
           <div className="rounded-full bg-green-100 h-8 w-8 flex justify-center items-center">
-            <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <svg
+              className="h-4 w-4 text-green-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
               <path
                 fillRule="evenodd"
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zM3.293 7.707a1 1 0 011.414 0L7 9.586l4.293-4.293a1 1 0 011.414 0l.707.707a1 1 0 010 1.414L8.414 11l4.293 4.293a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414 0L10 12.414l-4.293 4.293a1 1 0 01-1.414 0l-.707-.707a1 1 0 010-1.414L8.586 11 3.293 6.707a1 1 0 010-1.414l.707-.707z"
@@ -215,21 +240,35 @@ console.log("shippingDetails", shippingRate)
               />
             </svg>
           </div>
-
         </div>
       </div>
       <div className="flex justify-between items-center bg-white rounded-lg shadow-md px-6 py-4">
         <label className="flex items-center">
-          <input type="radio" name="shipping" value={shippingDetails?.secondService?.cost} onChange={onRadioChange} />
+          <input
+            type="radio"
+            name="shipping"
+            value={shippingDetails?.secondService?.cost}
+            onChange={onRadioChange}
+          />
           <div>
-            <p className="font-bold text-lg text-dark-purple">{shippingDetails?.secondService?.serviceName}</p>
-            <p className="text-sm text-gray-500">Delivery on {shippingDetails?.secondService?.date}</p>
+            <p className="font-bold text-lg text-dark-purple">
+              {shippingDetails?.secondService?.serviceName}
+            </p>
+            <p className="text-sm text-gray-500">
+              Delivery on {shippingDetails?.secondService?.date}
+            </p>
           </div>
         </label>
         <div className="flex items-center">
-          <p className="font-bold text-lg text-green-500 mr-2">{shippingDetails?.secondService?.cost} SGD</p>
+          <p className="font-bold text-lg text-green-500 mr-2">
+            {shippingDetails?.secondService?.cost} SGD
+          </p>
           <div className="rounded-full bg-green-100 h-8 w-8 flex justify-center items-center">
-            <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <svg
+              className="h-4 w-4 text-green-500"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
               <path
                 fillRule="evenodd"
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zM3.293 7.707a1 1 0 011.414 0L7 9.586l4.293-4.293a1 1 0 011.414 0l.707.707a1 1 0 010 1.414L8.414 11l4.293 4.293a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414 0L10 12.414l-4.293 4.293a1 1 0 01-1.414 0l-.707-.707a1 1 0 010-1.414L8.586 11 3.293 6.707a1 1 0 010-1.414l.707-.707z"
@@ -237,7 +276,6 @@ console.log("shippingDetails", shippingRate)
               />
             </svg>
           </div>
-
         </div>
       </div>
 
