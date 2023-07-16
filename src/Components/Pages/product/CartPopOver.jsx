@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartEmpty, removeFromCart } from "../../../store/slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function CartPopOver() {
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counter);
   const cartItems = useSelector((state) => state.cart.cartItems);
-
+  const navigate = useNavigate();
   const handleSetCartEmpty = () => {
     dispatch(setCartEmpty());
   };
@@ -76,7 +77,11 @@ export default function CartPopOver() {
                 </button>
               </div>
             ))}
-            <button className="mt-4 w-full rounded-lg bg-blue-600 p-4 font-semibold text-white">
+            <button
+              style={{ backgroundColor: " rebeccapurple" }}
+              onClick={() => navigate("/checkout-form")}
+              className="mt-4 w-full rounded-lg bg-blue-700 p-4 font-semibold text-white"
+            >
               Checkout
             </button>
           </div>

@@ -709,81 +709,79 @@ const Navbar = () => {
                 </div>
               </div>
             </OutsideClickHandler>
-          </div>
-          <OutsideClickHandler
-            onOutsideClick={() => {
-              setPackages(false);
-            }}
-          >
-            <div
-              className={`absolute w-screen   border-y border-gray-200 left-0 p-4 bg-white h-[10rem] shadow-sm ${
-                packages ? "block" : "hidden"
-              }`}
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                setPackages(false);
+              }}
             >
-              {/* cancle button */}
-              <button onClick={() => setPackages(false)}>
-                <svg
-                  className="h-6 w-6  text-gray-800 cursor-pointer  hover:text-gray-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
-                </svg>
-              </button>
-            </div>
+              <div
+                className={`absolute w-screen   border-y border-gray-200 left-0 p-4 bg-white h-[10rem] shadow-sm ${
+                  packages ? "block" : "hidden"
+                }`}
+              >
+                {/* cancle button */}
+                <button onClick={() => setPackages(false)}>
+                  <svg
+                    className="h-6 w-6  text-gray-800 cursor-pointer  hover:text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
 
-            <div
-              className={`absolute pl-[11.8rem] xl:pl-[12.7rem]  pt-8 ${
-                packages ? "block" : "hidden"
-              }`}
-            >
-              <div>
+              <div
+                className={`absolute pl-[11.8rem] xl:pl-[12.7rem]  pt-8 ${
+                  packages ? "block" : "hidden"
+                }`}
+              >
                 <div>
-                  <nav className=" flex flex-col gap-3">
-                    <NavLink
-                      // to={'ourPrices'}
-                      className={({ isActive }) =>
-                        `rounded-md text-[13px] font-semibold text-[#6211cb] hover:text-[#844ffa] ${
-                          isActive ? "text-purple-500" : "text-black"
-                        }`
-                      }
-                    >
-                      Small
-                    </NavLink>
-
-                    <NavLink
-                      // to={'/rateCalculator'}
-                      className={({ isActive }) =>
-                        `rounded-md text-[13px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
-                          isActive ? "text-purple-500" : "text-black"
-                        }`
-                      }
-                    >
-                      Medium
-                    </NavLink>
-
-                    <NavLink
-                      // to={'/rateCalculator'}
-                      className={({ isActive }) =>
-                        `rounded-md text-[13px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
-                          isActive ? "text-purple-500" : "text-black"
-                        }`
-                      }
-                    >
-                      Large
-                    </NavLink>
-                  </nav>
+                  <div>
+                    <nav className="flex flex-col gap-3">
+                      <NavLink
+                        to={"/product/1"}
+                        className={({ isActive }) =>
+                          `rounded-md text-[13px] font-semibold text-[#6211cb] hover:text-[#844ffa] ${
+                            isActive ? "text-purple-500" : "text-black"
+                          }`
+                        }
+                      >
+                        Small
+                      </NavLink>
+                      <NavLink
+                        to={"/product/2"}
+                        className={({ isActive }) =>
+                          `rounded-md text-[13px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
+                            isActive ? "text-purple-500" : "text-black"
+                          }`
+                        }
+                      >
+                        Medium
+                      </NavLink>
+                      <NavLink
+                        to={"/product/3"}
+                        className={({ isActive }) =>
+                          `rounded-md text-[13px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
+                            isActive ? "text-purple-500" : "text-black"
+                          }`
+                        }
+                      >
+                        Large
+                      </NavLink>
+                    </nav>
+                  </div>
                 </div>
               </div>
-            </div>
-          </OutsideClickHandler>
+            </OutsideClickHandler>
+          </div>
 
           {/* Mobile */}
           <div

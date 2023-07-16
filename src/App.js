@@ -22,6 +22,7 @@ import AddBox from "./Components/Pages/PricesPage/RateCalculator/AddBox";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Product from "./Components/Pages/product";
+import CheckoutForm from "./Components/Pages/product/CheckoutForm";
 
 function App() {
   // var data = JSON.stringify("");
@@ -56,6 +57,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/product/" element={<Product />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/checkout-form/" element={<CheckoutForm />} />
         <Route path="/countries/:id" element={<Countries />} />
         <Route path="/ourPrices" element={<OurPrice />} />
         <Route path="/rateCalculator" element={<RateCalculator />} />

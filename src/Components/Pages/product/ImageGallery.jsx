@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import Lightboxs from "./UI/Lightboxs";
+import pic1 from "../../../Assect/image-product-1.jpg";
+import pic2 from "../../../Assect/image-product-2.jpg";
+import pic3 from "../../../Assect/image-product-3.jpg";
+import pic4 from "../../../Assect/1x1x2.png";
+import pic5 from "../../../Assect/2x1x1.png";
+import pic6 from "../../../Assect/3x3x1.png";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+const images = [pic1, pic2, pic3, pic4, pic5, pic6];
 const ImageGallery = () => {
-  const [currentImage, setCurrentImage] = useState("image-product-1.jpg");
+  const { id } = useParams();
+
+  const [currentImage, setCurrentImage] = useState(images[id - 1]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentThumbnailIndex, setCurrentThumbnailIndex] = useState(0);
   const [lightboxVisible, setLightboxVisible] = useState(false);
-  const images = [
-    "image-product-1.jpg",
-    "image-product-2.jpg",
-    "image-product-3.jpg",
-    "image-product-4.jpg",
-  ];
 
   return (
     <>
