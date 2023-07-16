@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c0ddd711.css",
-    "main.js": "/static/js/main.c259c14d.js",
+    "main.css": "/static/css/main.b9f9ae5c.css",
+    "main.js": "/static/js/main.2e59549b.js",
     "static/media/packing1.gif": "/static/media/packing1.2ab7ba59378e18ab80a7.gif",
     "static/media/packing2.gif": "/static/media/packing2.df0573416417a4665fd9.gif",
     "static/media/Price3.png": "/static/media/Price3.b74e16530ff996fe1418.png",
@@ -15,13 +15,17 @@
     "static/media/3x3x3.png": "/static/media/3x3x3.30662163c917e1a75a17.png",
     "static/media/Real Time Parcel Tracking.png": "/static/media/Real Time Parcel Tracking.d9f880f5f434edadb40b.png",
     "static/media/logo.png": "/static/media/logo.095508b716cdc392cd3f.png",
+    "static/media/3x3x1.png": "/static/media/3x3x1.04582381bdab036573d7.png",
     "static/media/Custom Packing.png": "/static/media/Custom Packing.910a701867a6b5e8e204.png",
     "static/media/Ask Me Anything.png": "/static/media/Ask Me Anything.d6a26236ef8659f9f6f5.png",
     "static/media/Tax Ray Vision.png": "/static/media/Tax Ray Vision.da9cb8fd8b8990d5986e.png",
+    "static/media/image-product-1.jpg": "/static/media/image-product-1.2ae7ab44e9415d6f0985.jpg",
     "static/media/Expert Review.png": "/static/media/Expert Review.98f5794e2420d0125a44.png",
     "static/media/Precision Pick Up.png": "/static/media/Precision Pick Up.77e7c1bda8d9c46e7d33.png",
     "static/media/Green Shipping.png": "/static/media/Green Shipping.80997751da1447b226ef.png",
+    "static/media/2x1x1.png": "/static/media/2x1x1.ee62ecd140925bc75b12.png",
     "static/media/google-rating.png": "/static/media/google-rating.563486831aa680fdd8bc.png",
+    "static/media/1x1x2.png": "/static/media/1x1x2.cafbb98ffc3b7a0ede3c.png",
     "static/media/montserrat-latin-400-normal.woff2": "/static/media/montserrat-latin-400-normal.acb6629fe45c43ad5d8b.woff2",
     "static/media/montserrat-latin-ext-400-normal.woff2": "/static/media/montserrat-latin-ext-400-normal.0204ec08a4b574088f02.woff2",
     "static/media/montserrat-cyrillic-ext-400-normal.woff2": "/static/media/montserrat-cyrillic-ext-400-normal.bbf9e820a2563aac0d8b.woff2",
@@ -29,11 +33,11 @@
     "static/media/montserrat-vietnamese-400-normal.woff2": "/static/media/montserrat-vietnamese-400-normal.8f3f4c99eb0eeb5990f1.woff2",
     "static/media/track_icon.svg": "/static/media/track_icon.847182b07ee616af836e.svg",
     "index.html": "/index.html",
-    "main.c0ddd711.css.map": "/static/css/main.c0ddd711.css.map",
-    "main.c259c14d.js.map": "/static/js/main.c259c14d.js.map"
+    "main.b9f9ae5c.css.map": "/static/css/main.b9f9ae5c.css.map",
+    "main.2e59549b.js.map": "/static/js/main.2e59549b.js.map"
   },
   "entrypoints": [
-    "static/css/main.c0ddd711.css",
-    "static/js/main.c259c14d.js"
+    "static/css/main.b9f9ae5c.css",
+    "static/js/main.2e59549b.js"
   ]
 }
