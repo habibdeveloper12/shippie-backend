@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 
 // const sendPaymentRequest = async () => {
 //   const url = "https://portalapi.oisbizcraft.com/api/payments";
-//   const cust_code = "001008";
+//   const cust_code = "001098";
 //   const merchant_outlet_id = "01";
 //   const terminal_id = "001";
 //   const merchant_return_url =
@@ -69,17 +69,18 @@ app.use((req, res, next) => {
 //   const order_id = "uuid_1_uuid";
 //   const user_fullname = "Michael Scott";
 //   const secret_key = "OGVQ4KW90AMBRR5YA34YPLDI3ZJJANGU";
-//   const hashString = `${secret_key}${cust_code}${merchant_outlet_id}${terminal_id}${merchant_return_url}${description}${currency}${amount}${order_id}${user_fullname}`;
+//   const hashString = `${cust_code}${merchant_outlet_id}${terminal_id}${merchant_return_url}${description}${currency}${amount}${order_id}${user_fullname}`;
 //   const hash = CryptoJS.HmacSHA1(hashString, secret_key);
 //   const signature = CryptoJS.enc.Hex.stringify(hash);
 //   const hashed = signature.toUpperCase();
 //   const requestData = {
-//     order_id: "uuid_1_uuid",
+//     order_id: "001",
 //     merchant_outlet_id: "01",
 //     terminal_id: "001",
-//     cust_code: "001008",
-//     merchant_return_url: "https://google.com",
-//     amount: 10,
+//     cust_code: "001098",
+//     merchant_return_url:
+//       "https%3A%2F%2Fpayhere.oisbizcraft.com%2Fcheck-status%2F2195f7f478c06c41da439329624ea5571d83e79eaedf7f82a4448aeae74c6dd9",
+//     amount: 10000,
 //     currency: "SGD",
 //     description: description,
 //     user_fullname: "Michael Scott",
