@@ -34,17 +34,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api", routes);
 app.use("/uploads", express.static("uploads"));
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // Replace with your origin
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  if (req.method === "OPTIONS") {
-    res.sendStatus(200);
-  } else {
-    next();
-  }
-});
+app.use(
+  cors({
+    origin: "https://shippee.sg",
+    methods: "GET,POST,PUT,DELETE", // Adjust as needed
+  })
+);
 // app.use('/', (req, res) => {
 //     res.send(`
 //   <h1>Welcome to E-commerce Rest APIs</h1>
