@@ -4,13 +4,6 @@ import errorHandler from "./middlewares/errorHandler.js";
 const app = express();
 import routes from "./routes/index.js";
 import bodyParser from "body-parser";
-import crypto from "crypto-js";
-import CryptoJS from "crypto-js";
-function conversion(secret, message) {
-  var hash = CryptoJS.HmacSHA1(message, secret);
-  var signature = CryptoJS.enc.Hex.stringify(hash);
-  return signature.toUpperCase();
-}
 import mongoose from "mongoose";
 import path from "path";
 import cors from "cors";
@@ -34,12 +27,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api", routes);
 app.use("/uploads", express.static("uploads"));
-app.use(
-  cors({
-    origin: "https://shippee.sg",
-    methods: "GET,POST,PUT,DELETE", // Adjust as needed
-  })
-);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // Replace with your origin
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 // app.use('/', (req, res) => {
 //     res.send(`
 //   <h1>Welcome to E-commerce Rest APIs</h1>
@@ -93,61 +91,6 @@ app.use(
 
 // sendPaymentRequest();
 
-app.post("/request-payment", async (req, res) => {
-  const data = req.body;
-  // const data = {
-  //   cust_code: "001098",
-  //   merchant_outlet_id: "01",
-  //   merchant_return_url: "https://google.com",
-  //   terminal_id: "001",
-  //   description: "ghghgh",
-  //   currency: "SGD",
-  //   amount: 1000,
-  //   order_id: "uuid_1_uufghfg5ghghidsd",
-  //   user_fullname: "Michael Scott",
-  //   user_email: "userEmail@test.com",
-  // };
-
-  data.hash = generateHMAC(data, "OGVQ4KW90AMBRR5YA34YPLDI3ZJJANGU");
-
-  const apiUrl = "https://portalapi.oisbizcraft.com/api/payments";
-
-  try {
-    const response = await axios.post(apiUrl, data);
-    res.json(response.data);
-    console.log("Response from OIS-Bizcraft API:", response.data);
-    // Handle the response from the OIS-Bizcraft API here as needed
-  } catch (error) {
-    console.error("Error calling OIS-Bizcraft API:", error);
-    // Handle errors here if the API call fails
-  }
-});
-
-function generateHMAC(data, secretKey) {
-  const string =
-    data.cust_code +
-    data.merchant_outlet_id +
-    data.terminal_id +
-    data.merchant_return_url +
-    data.description +
-    data.currency +
-    data.amount +
-    data.order_id +
-    data.user_fullname;
-
-  const hmac = CryptoJS.HmacSHA256(string, secretKey);
-  return hmac.toString().toUpperCase();
-}
-function generateRandomStr(length) {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
 // Call the function to make the API request
 // postToOISBizcraftApi();
 
