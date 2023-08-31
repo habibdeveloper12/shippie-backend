@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b9f9ae5c.css",
-    "main.js": "/static/js/main.aa8b128d.js",
+    "main.css": "/static/css/main.881411ec.css",
+    "main.js": "/static/js/main.95d676be.js",
     "static/media/packing1.gif": "/static/media/packing1.2ab7ba59378e18ab80a7.gif",
     "static/media/packing2.gif": "/static/media/packing2.df0573416417a4665fd9.gif",
     "static/media/Price3.png": "/static/media/Price3.b74e16530ff996fe1418.png",
@@ -33,11 +33,11 @@
     "static/media/montserrat-vietnamese-400-normal.woff2": "/static/media/montserrat-vietnamese-400-normal.8f3f4c99eb0eeb5990f1.woff2",
     "static/media/track_icon.svg": "/static/media/track_icon.847182b07ee616af836e.svg",
     "index.html": "/index.html",
-    "main.b9f9ae5c.css.map": "/static/css/main.b9f9ae5c.css.map",
-    "main.aa8b128d.js.map": "/static/js/main.aa8b128d.js.map"
+    "main.881411ec.css.map": "/static/css/main.881411ec.css.map",
+    "main.95d676be.js.map": "/static/js/main.95d676be.js.map"
   },
   "entrypoints": [
-    "static/css/main.b9f9ae5c.css",
-    "static/js/main.aa8b128d.js"
+    "static/css/main.881411ec.css",
+    "static/js/main.95d676be.js"
   ]
 }
