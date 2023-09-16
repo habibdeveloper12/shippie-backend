@@ -1,15 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.f58beb9b.css",
-    "main.js": "/static/js/main.3fd34c27.js",
+    "main.js": "/static/js/main.c29b70d0.js",
     "static/media/packing1.gif": "/static/media/packing1.2ab7ba59378e18ab80a7.gif",
     "static/media/packing2.gif": "/static/media/packing2.df0573416417a4665fd9.gif",
     "static/media/Price3.png": "/static/media/Price3.b74e16530ff996fe1418.png",
     "static/media/Price.png": "/static/media/Price.65195280630ebdf053c0.png",
     "static/media/Price2.png": "/static/media/Price2.cd1e475a97b9315eaa93.png",
+    "static/media/school.webp": "/static/media/school.6c6c2ff2a1219bb6bb62.webp",
     "static/media/tax_bg.webp": "/static/media/tax_bg.275a7419dba0e26ec6b7.webp",
+    "static/media/shippie (3).jpg": "/static/media/shippie (3).24de38df3c74cabd15b0.jpg",
+    "static/media/shippie (2).jpg": "/static/media/shippie (2).e9e2429d180bd22fee13.jpg",
     "static/media/Keep Calm Insurance.png": "/static/media/Keep Calm Insurance.0c2f80e558fb06a44d4d.png",
     "static/media/GetStart.png": "/static/media/GetStart.a8c90687bcac4023fb4c.png",
+    "static/media/shippie (1).jpg": "/static/media/shippie (1).33fa3a73a10c4e483bbe.jpg",
     "static/media/packing3.webp": "/static/media/packing3.b52c3d8065c991ce9f19.webp",
     "static/media/montserrat-all-400-normal.woff": "/static/media/montserrat-all-400-normal.327fab0afc997a2d9b16.woff",
     "static/media/3x3x3.png": "/static/media/3x3x3.30662163c917e1a75a17.png",
@@ -34,10 +38,10 @@
     "static/media/track_icon.svg": "/static/media/track_icon.847182b07ee616af836e.svg",
     "index.html": "/index.html",
     "main.f58beb9b.css.map": "/static/css/main.f58beb9b.css.map",
-    "main.3fd34c27.js.map": "/static/js/main.3fd34c27.js.map"
+    "main.c29b70d0.js.map": "/static/js/main.c29b70d0.js.map"
   },
   "entrypoints": [
     "static/css/main.f58beb9b.css",
-    "static/js/main.3fd34c27.js"
+    "static/js/main.c29b70d0.js"
   ]
 }
