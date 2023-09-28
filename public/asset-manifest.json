@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.c454fc54.css",
-    "main.js": "/static/js/main.121c9224.js",
+    "main.css": "/static/css/main.3e9dd447.css",
+    "main.js": "/static/js/main.5a499ccf.js",
     "static/media/packing1.gif": "/static/media/packing1.2ab7ba59378e18ab80a7.gif",
     "static/media/packing2.gif": "/static/media/packing2.df0573416417a4665fd9.gif",
     "static/media/Price3.png": "/static/media/Price3.b74e16530ff996fe1418.png",
     "static/media/Price.png": "/static/media/Price.65195280630ebdf053c0.png",
     "static/media/Price2.png": "/static/media/Price2.cd1e475a97b9315eaa93.png",
+    "static/media/banner-process.png": "/static/media/banner-process.7630c1e2eaef5d1ddd85.png",
     "static/media/school.webp": "/static/media/school.6c6c2ff2a1219bb6bb62.webp",
     "static/media/tax_bg.webp": "/static/media/tax_bg.275a7419dba0e26ec6b7.webp",
     "static/media/shippie (3).jpg": "/static/media/shippie (3).24de38df3c74cabd15b0.jpg",
@@ -15,6 +16,7 @@
     "static/media/GetStart.png": "/static/media/GetStart.a8c90687bcac4023fb4c.png",
     "static/media/shippie (1).jpg": "/static/media/shippie (1).33fa3a73a10c4e483bbe.jpg",
     "static/media/packing3.webp": "/static/media/packing3.b52c3d8065c991ce9f19.webp",
+    "static/media/hero (1).jpg": "/static/media/hero (1).115d2db20f248ff5ad53.jpg",
     "static/media/montserrat-all-400-normal.woff": "/static/media/montserrat-all-400-normal.327fab0afc997a2d9b16.woff",
     "static/media/3x3x3.png": "/static/media/3x3x3.30662163c917e1a75a17.png",
     "static/media/Real Time Parcel Tracking.png": "/static/media/Real Time Parcel Tracking.d9f880f5f434edadb40b.png",
@@ -22,6 +24,7 @@
     "static/media/3x3x1.png": "/static/media/3x3x1.04582381bdab036573d7.png",
     "static/media/Custom Packing.png": "/static/media/Custom Packing.910a701867a6b5e8e204.png",
     "static/media/Ask Me Anything.png": "/static/media/Ask Me Anything.d6a26236ef8659f9f6f5.png",
+    "static/media/hero (2).jpg": "/static/media/hero (2).8c36a65166f68a753ed5.jpg",
     "static/media/Tax Ray Vision.png": "/static/media/Tax Ray Vision.da9cb8fd8b8990d5986e.png",
     "static/media/image-product-1.jpg": "/static/media/image-product-1.2ae7ab44e9415d6f0985.jpg",
     "static/media/Expert Review.png": "/static/media/Expert Review.98f5794e2420d0125a44.png",
@@ -37,11 +40,11 @@
     "static/media/montserrat-vietnamese-400-normal.woff2": "/static/media/montserrat-vietnamese-400-normal.8f3f4c99eb0eeb5990f1.woff2",
     "static/media/track_icon.svg": "/static/media/track_icon.847182b07ee616af836e.svg",
     "index.html": "/index.html",
-    "main.c454fc54.css.map": "/static/css/main.c454fc54.css.map",
-    "main.121c9224.js.map": "/static/js/main.121c9224.js.map"
+    "main.3e9dd447.css.map": "/static/css/main.3e9dd447.css.map",
+    "main.5a499ccf.js.map": "/static/js/main.5a499ccf.js.map"
   },
   "entrypoints": [
-    "static/css/main.c454fc54.css",
-    "static/js/main.121c9224.js"
+    "static/css/main.3e9dd447.css",
+    "static/js/main.5a499ccf.js"
   ]
 }

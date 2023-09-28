@@ -8,5 +8,6 @@ router.get("/shippings/:id", shippingController.show);
 router.get("/orders/:id", shippingController.orders);
 router.post("/getShippingRate", shippingController.shippingRate);
 router.post("/request-payment", shippingController.RateOisPayment);
+router.post("/contact", shippingController.Contact);
 
 export default router;

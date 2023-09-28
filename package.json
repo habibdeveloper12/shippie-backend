@@ -22,7 +22,8 @@
     "express": "^4.17.1",
     "express-history-api-fallback": "^2.2.1",
     "joi": "17.4.0",
-    "mongoose": "^5.12.1"
+    "mongoose": "^5.12.1",
+    "nodemailer": "^6.9.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

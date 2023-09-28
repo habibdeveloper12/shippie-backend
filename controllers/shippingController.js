@@ -3,7 +3,7 @@ import Easypost from "@easypost/api";
 import CustomErrorHandler from "../services/CustomErrorHandler.js";
 import axios from "axios";
 import { generateHMAC } from "../middlewares/generateHM.js";
-
+import nodemailer from "nodemailer";
 const shippingController = {
   async store(req, res, next) {
     const { sender, recipient, addons, date } = req.body;
@@ -194,14 +194,36 @@ const shippingController = {
       // Handle errors here if the API call fails
     }
   },
-};
+  async Contact(req, res) {
+    const data = req.body;
+    console.log(data);
+    // Create a transporter object using the default SMTP transport
+    const transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      auth: {
+        user: "marcelo7@ethereal.email",
+        pass: "nt5NVwMrF8KNjJhfBa",
+      },
+    });
 
-//     );
-//
-//     res.json({ shippingRate });
-// } catch(error) {
-//     // console.error(error);
-//     res.status(500).json(error)
-// }
+    // Email data
+    const mailOptions = {
+      from: "sunrahman19@gmail.com", // Sender's email address
+      to: "habiburdeveloper7@example.com", // Recipient's email address
+      subject: data.subject,
+      text: data.message,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
+  },
+};
 
 export default shippingController;
