@@ -166,20 +166,20 @@ const shippingController = {
     }
   },
   async RateOisPayment(req, res) {
-    const data = req.body;
-    // const data = {
-    //   cust_code: "001098",
-    //   merchant_outlet_id: "01",
-    //   merchant_return_url: "https://google.com",
-    //   terminal_id: "001",
-    //   description: "ghghgh",
-    //   currency: "SGD",
-    //   amount: 1000,
-    //   order_id: "uuid_1_uufghfg5ghghidsd",
-    //   user_fullname: "Michael Scott",
-    //   user_email: "userEmail@test.com",
-    // };
-
+    const body = req.body;
+    const data = {
+      cust_code: "001098",
+      merchant_outlet_id: "01",
+      merchant_return_url: body.merchant_return_url,
+      terminal_id: "001",
+      description: body.description,
+      currency: "SGD",
+      amount: body.amount,
+      order_id: "uuid_1_uufghfg5ghghidsd",
+      user_fullname: body.user_fullname,
+      user_email: body.user_email,
+    };
+    console.log(data);
     data.hash = generateHMAC(data, "OGVQ4KW90AMBRR5YA34YPLDI3ZJJANGU");
 
     const apiUrl = "https://portalapi.oisbizcraft.com/api/payments";
