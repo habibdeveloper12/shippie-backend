@@ -68,7 +68,7 @@ const shippingController = {
     const { country: senderCountry } = sender;
     const { quantity, description, category, value, weight } =
       req.body.packages[0].items[0];
-    console.log("description", description);
+    console.log("sender", sender);
     const requestedPackageLineItems = packages.map((p) => {
       return {
         weight: {
@@ -93,7 +93,8 @@ const shippingController = {
       requestedShipment: {
         shipper: {
           address: {
-            postalCode: "486058",
+            // postalCode: "486058",
+            postalCode: sender.postal_code,
             countryCode: "SG",
           },
         },
