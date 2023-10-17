@@ -68,7 +68,7 @@ const shippingController = {
     const { country: senderCountry } = sender;
     const { quantity, description, category, value, weight } =
       req.body.packages[0].items[0];
-    console.log("sender", sender);
+    console.log("sender", reveiverCountry);
     const requestedPackageLineItems = packages.map((p) => {
       return {
         weight: {
@@ -247,20 +247,19 @@ const shippingController = {
       const stateResponse = await axios.get(
         `https://app.zipcodebase.com/api/v1/country/province?apikey=a6618ae0-6c69-11ee-b32f-1dbde90525b8&country=${country}`
       );
-      const state = stateResponse.data.results[0];
+      const countState = stateResponse.data.results.length;
+      const state = stateResponse.data.results[countState - 1];
       console.log("Response from OIS-Bizcraft API:", state);
       const postalResponse = await axios.get(
         `https://app.zipcodebase.com/api/v1/code/state?apikey=a6618ae0-6c69-11ee-b32f-1dbde90525b8&state_name=${state}&country=${country}&limit=10`
       );
-      let postal_code = postalResponse.data.results[0];
-      if (!postal_code) {
-        postal_code = 79701;
-        country = "US";
-      }
-      console.log(
-        "Response from OIS-Bizcraft API:",
-        postalResponse.data.results[0]
-      );
+      const count = postalResponse.data.results.length;
+      let postal_code = postalResponse.data.results[count - 1];
+      // if (!postal_code) {
+      //   postal_code = 79701;
+      //   country = "US";
+      // }
+      console.log("Response from OIS-Bizcraft API:", postal_code);
       const requestedPackageLineItems = packages.map((p) => {
         return {
           weight: {
@@ -292,8 +291,8 @@ const shippingController = {
           },
           recipient: {
             address: {
-              postalCode: postal_code ? postal_code : "79701",
-              countryCode: postal_code ? country : "US",
+              postalCode: postal_code,
+              countryCode: country,
             },
           },
           pickupType: "DROPOFF_AT_FEDEX_LOCATION",
