@@ -292,8 +292,8 @@ const shippingController = {
           },
           recipient: {
             address: {
-              postalCode: postal_code,
-              countryCode: country,
+              postalCode: postal_code ? postal_code : "79701",
+              countryCode: postal_code ? country : "US",
             },
           },
           pickupType: "DROPOFF_AT_FEDEX_LOCATION",
