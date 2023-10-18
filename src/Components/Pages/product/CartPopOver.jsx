@@ -8,8 +8,9 @@ export default function CartPopOver() {
   const counter = useSelector((state) => state.counter);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const navigate = useNavigate();
-  const handleSetCartEmpty = () => {
-    dispatch(setCartEmpty());
+  const handleSetCartEmpty = (e) => {
+    console.log(e);
+    dispatch(removeFromCart(e));
   };
 
   return (
@@ -57,7 +58,7 @@ export default function CartPopOver() {
                   </div>
                 </div>
                 <button
-                  onClick={handleSetCartEmpty}
+                  onClick={() => handleSetCartEmpty(item)}
                   className="hover:text-black"
                 >
                   <svg

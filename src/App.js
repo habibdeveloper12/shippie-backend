@@ -23,6 +23,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Product from "./Components/Pages/product";
 import CheckoutForm from "./Components/Pages/product/CheckoutForm";
+import ThankYou from "./Components/Pages/Thanks/ThankYou";
+import Contact from "./Components/Pages/contact/Contact";
+import RateCalculatorReal from "./Components/Pages/PricesPage/RateCalculator/RateCalculatorReal";
 
 function App() {
   // var data = JSON.stringify("");
@@ -73,8 +76,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/track" element={<Track />} />
+        <Route path="/thanks" element={<ThankYou />} />
         <Route path="/addbox" element={<AddBox />} />
-        <Route path="/get-a-quote" element={<RateCalculator />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/get-a-quote" element={<RateCalculatorReal />} />
       </Routes>
       <Footer></Footer>
     </div>

@@ -17,6 +17,7 @@ const Navbar = () => {
   const [learn, setLearn] = useState(false);
   const [packages, setPackages] = useState(false);
   const [scroll, setScroll] = useState(false);
+  const [contact, setContact] = useState(false);
 
   const [user] = useAuthState(auth);
 
@@ -115,7 +116,7 @@ const Navbar = () => {
                 Countries
               </NavLink>
 
-              <NavLink
+              {/* <NavLink
                 onClick={() => setFeatures(!features)}
                 to={"features"}
                 className={({ isActive }) =>
@@ -125,7 +126,7 @@ const Navbar = () => {
                 }
               >
                 Features
-              </NavLink>
+              </NavLink> */}
 
               <NavLink
                 onClick={() => setPrice(!price)}
@@ -151,16 +152,18 @@ const Navbar = () => {
                 Learn
               </NavLink>
 
-              <NavLink
-                to={"dashboard"}
-                className={({ isActive }) =>
-                  `rounded-md text-[13px] font-semibold  ${
-                    isActive ? "text-purple-500" : "text-black"
-                  }`
-                }
-              >
-                Dashboard
-              </NavLink>
+              {user && (
+                <NavLink
+                  to={"dashboard"}
+                  className={({ isActive }) =>
+                    `rounded-md text-[13px] font-semibold  ${
+                      isActive ? "text-purple-500" : "text-black"
+                    }`
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              )}
               <NavLink
                 onClick={() => setPackages(!packages)}
                 to={"Packages"}
@@ -172,7 +175,17 @@ const Navbar = () => {
               >
                 Packages
               </NavLink>
-
+              <NavLink
+                onClick={() => setContact(!contact)}
+                to={"contact"}
+                className={({ isActive }) =>
+                  `rounded-md text-[13px] font-semibold  ${
+                    isActive ? "text-purple-500" : "text-black"
+                  }`
+                }
+              >
+                Contact
+              </NavLink>
               <NavLink
                 to={"shipnow"}
                 className={({ isActive }) =>

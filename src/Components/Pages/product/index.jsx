@@ -35,7 +35,7 @@ export default function Product() {
       id: 1,
       name: "FedEx Large Box",
       image: pic3,
-      price: 2,
+      price: 10,
     },
   ];
 
@@ -43,7 +43,20 @@ export default function Product() {
     for (let i = 0; i < counter; i++) {
       dispatch(addToCart(product1[id - 1]));
     }
+    // const data = { ...e, count };
+    // console.log(data);
+    // dispatch(setProductCount(data));
   };
+
+  // console.log(product);
+
+  // Access the product count from the Redux store
+  // const productCount = useSelector((state) => {
+  //   const product = state.products.find((product) => product.id === productId);
+  //   return product ? product.count : 0;
+  // });
+
+  console.log(cart);
   console.log(cart);
   const productAll = [
     {
@@ -65,7 +78,7 @@ export default function Product() {
       name: "FedEx Large Box",
       dis: ` 17.88" x 12.38" x 3" (45.40 cm x 31.43 cm x 7.62 cm) `,
       image: currentImage,
-      price: 2,
+      price: 10,
     },
   ];
 

@@ -1,20 +1,23 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../../store/slices/counterSlice";
+import { updateProductCount } from "../../../store/slices/productSlice";
 
-export default function Counter() {
+export default function Counter({ count, setCount }) {
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counter);
-
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const handleIncrement = () => {
+    // dispatch(increment());
     dispatch(increment());
+    // dispatch(updateProductCount({ id: 1, count: 3 }));
   };
 
   const handleDecrement = () => {
     dispatch(decrement());
   };
 
-  console.log("contador: ", counter);
+  console.log("contador: ", cartItems);
 
   return (
     <div className="mt-4 flex h-[52px] items-center justify-between rounded-lg bg-light-grayish-blue px-6 lg:w-1/3">

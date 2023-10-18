@@ -10,9 +10,11 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
+      console.log(action);
       const itemIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
+      console.log(action.payload, state);
       if (itemIndex === -1) {
         // If item does not exist in the cart, add it
         state.cartItems.push(action.payload);
@@ -21,6 +23,7 @@ export const cartSlice = createSlice({
       state.productQuantity += 1;
     },
     removeFromCart: (state, action) => {
+      console.log(state, action);
       const itemIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );

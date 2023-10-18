@@ -8,6 +8,13 @@ import LoockingFor from "./LoockingFor/LoockingFor";
 import Quality from "./Quality/Quality";
 import CryptoJS from "crypto-js";
 import axios from "axios";
+import NewBanner from "./Hero/Bannar/NewBanner";
+import SecondSection from "./Hero/Bannar/SecondSection";
+import ThirdSection from "./Hero/Bannar/ThirdSection";
+import FourSection from "./Hero/Bannar/FourSection";
+import RateCalculator from "../PricesPage/RateCalculator/RateCalculator";
+import RateCalculatorReal from "../PricesPage/RateCalculator/RateCalculatorReal";
+
 const HomePage = () => {
   const handleCheckout = async ({ _id, sender, recipient }) => {
     const cust_code = "001008";
@@ -60,12 +67,18 @@ const HomePage = () => {
 
   return (
     <div>
-      {/* <button onClick={handleCheckout}>asssssssssssssssssssss</button> */}
+      <NewBanner></NewBanner>
+      <div className="relative">
+        <RateCalculator />
+      </div>
       <Hero></Hero>
+      <SecondSection />
+      {/* <ThirdSection /> */}
+      <FourSection />
       <Card></Card>
-      <CommonWay></CommonWay>
-      <HowToWork></HowToWork>
-      <Quality></Quality>
+      {/* <CommonWay></CommonWay> */}
+      {/* <HowToWork></HowToWork> */}
+      {/* <Quality></Quality> */}
       <LoockingFor></LoockingFor>
       <GetStart></GetStart>
     </div>

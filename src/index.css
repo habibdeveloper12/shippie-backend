@@ -3,16 +3,19 @@
 @tailwind utilities;
 
 .form-input {
-    border-color: #9395a0;
-    border-radius: 0.75rem;
-    border-width: 1px;
-    box-shadow: 0 0 1px #9395a0;
+  border-color: #9395a0;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  box-shadow: 0 0 1px #9395a0;
 }
 
 @layer base {
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
+}
+p {
+  color: black;
+}
