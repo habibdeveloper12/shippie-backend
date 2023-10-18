@@ -228,7 +228,7 @@ const shippingController = {
   async QouteShipping(req, res) {
     console.log(req.body);
     ("");
-    const { packages, country } = req.body;
+    const { packages, country, postal_code, from_postal_code } = req.body;
     // const { recipient, packages, sender, addons, date } = req.body;
     // const { country: senderCountry } = sender;
     // const { quantity, description, category, value, weight } =
@@ -244,22 +244,22 @@ const shippingController = {
       return countryPostalCodes[randomIndex];
     }
     try {
-      const stateResponse = await axios.get(
-        `https://app.zipcodebase.com/api/v1/country/province?apikey=a6618ae0-6c69-11ee-b32f-1dbde90525b8&country=${country}`
-      );
-      const countState = stateResponse.data.results.length;
-      const state = stateResponse.data.results[countState - 1];
-      console.log("Response from OIS-Bizcraft API:", state);
-      const postalResponse = await axios.get(
-        `https://app.zipcodebase.com/api/v1/code/state?apikey=a6618ae0-6c69-11ee-b32f-1dbde90525b8&state_name=${state}&country=${country}&limit=10`
-      );
-      const count = postalResponse.data.results.length;
-      let postal_code = postalResponse.data.results[count - 1];
-      // if (!postal_code) {
-      //   postal_code = 79701;
-      //   country = "US";
-      // }
-      console.log("Response from OIS-Bizcraft API:", postal_code);
+      // const stateResponse = await axios.get(
+      //   `https://app.zipcodebase.com/api/v1/country/province?apikey=a6618ae0-6c69-11ee-b32f-1dbde90525b8&country=${country}`
+      // );
+      // const countState = stateResponse.data.results.length;
+      // const state = stateResponse.data.results[countState - 1];
+      // console.log("Response from OIS-Bizcraft API:", state);
+      // const postalResponse = await axios.get(
+      //   `https://app.zipcodebase.com/api/v1/code/state?apikey=a6618ae0-6c69-11ee-b32f-1dbde90525b8&state_name=${state}&country=${country}&limit=10`
+      // );
+      // const count = postalResponse.data.results.length;
+      // let postal_code = postalResponse.data.results[count - 1];
+      // // if (!postal_code) {
+      // //   postal_code = 79701;
+      // //   country = "US";
+      // // }
+      // console.log("Response from OIS-Bizcraft API:", postal_code);
       const requestedPackageLineItems = packages.map((p) => {
         return {
           weight: {
@@ -284,14 +284,14 @@ const shippingController = {
         requestedShipment: {
           shipper: {
             address: {
-              postalCode: "486058",
+              postalCode: postal_code,
               // postalCode: 1201,
               countryCode: "SG",
             },
           },
           recipient: {
             address: {
-              postalCode: postal_code,
+              postalCode: from_postal_code,
               countryCode: country,
             },
           },
