@@ -124,7 +124,7 @@ const shippingController = {
               },
               customsValue: {
                 amount: 5,
-                currency: "USD",
+                currency: "SGD",
               },
             },
           ],
