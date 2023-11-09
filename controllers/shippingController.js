@@ -61,14 +61,13 @@ const shippingController = {
   },
 
   async shippingRate(req, res) {
-    console.log(req.body);
     const { recipient, packages, sender, addons, date } = req.body;
-    const { postal_code: recieverPostal, country: reveiverCountry } = recipient;
+    const { postal_code, country } = recipient;
 
-    const { country: senderCountry } = sender;
     const { quantity, description, category, value, weight } =
       req.body.packages[0].items[0];
-    console.log("sender", reveiverCountry);
+    // console.log("sender", reveiverCountry);
+    console.log(packages);
     const requestedPackageLineItems = packages.map((p) => {
       return {
         weight: {
@@ -83,6 +82,78 @@ const shippingController = {
         },
       };
     });
+    console.log(country, sender, recipient);
+    // const shippingData = {
+    //   accountNumber: {
+    //     value: "121059770",
+    //   },
+    //   rateRequestControlParameters: {
+    //     returnTransitTimes: true,
+    //   },
+    //   requestedShipment: {
+    //     shipper: {
+    //       address: {
+    //         // postalCode: "486058",
+    //         postalCode: sender.postal_code,
+    //         countryCode: "SG",
+    //       },
+    //     },
+    //     recipient: {
+    //       address: {
+    //         postalCode: postal_code,
+    //         countryCode: country,
+    //       },
+    //     },
+    //     pickupType: "DROPOFF_AT_FEDEX_LOCATION",
+    //     rateRequestType: ["LIST", "ACCOUNT"],
+    //     customsClearanceDetail: {
+    //       dutiesPayment: {
+    //         paymentType: "SENDER",
+    //         payor: {
+    //           responsibleParty: null,
+    //         },
+    //       },
+    //       commodities: [
+    //         {
+    //           description: " GOod for kids computers",
+    //           quantity: 1,
+    //           quantityUnits: "PCS",
+    //           weight: {
+    //             units: "KG",
+    //             value: 2,
+    //           },
+    //           customsValue: {
+    //             amount: 5,
+    //             currency: "SGD",
+    //           },
+    //         },
+    //       ],
+    //     },
+    //     requestedPackageLineItems: requestedPackageLineItems,
+    //   },
+    // };
+    // const shippingData = {
+    //   accountNumber: {
+    //     value: "121059770",
+    //   },
+    //   requestedShipment: {
+    //     shipper: {
+    //       address: {
+    //         postalCode: sender.postal_code,
+    //         countryCode: "SG",
+    //       },
+    //     },
+    //     recipient: {
+    //       address: {
+    //         postalCode: postal_code,
+    //         countryCode: country,
+    //       },
+    //     },
+    //     pickupType: "DROPOFF_AT_FEDEX_LOCATION",
+    //     rateRequestType: ["ACCOUNT", "LIST"],
+    //     requestedPackageLineItems: requestedPackageLineItems,
+    //   },
+    // };
     const shippingData = {
       accountNumber: {
         value: "121059770",
@@ -93,18 +164,19 @@ const shippingController = {
       requestedShipment: {
         shipper: {
           address: {
-            // postalCode: "486058",
             postalCode: sender.postal_code,
             countryCode: "SG",
           },
         },
         recipient: {
           address: {
-            postalCode: recieverPostal,
-            countryCode: reveiverCountry,
+            postalCode: postal_code,
+            countryCode: country,
           },
         },
+        // shipDateStamp: date,
         pickupType: "DROPOFF_AT_FEDEX_LOCATION",
+        // serviceType: "INTERNATIONAL_PRIORITY",
         rateRequestType: ["LIST", "ACCOUNT"],
         customsClearanceDetail: {
           dutiesPayment: {
@@ -115,16 +187,16 @@ const shippingController = {
           },
           commodities: [
             {
-              description: " GOod for kids computers",
+              description: "Camera",
               quantity: 1,
               quantityUnits: "PCS",
               weight: {
                 units: "KG",
-                value: 2,
+                value: 20,
               },
               customsValue: {
-                amount: 5,
-                currency: "SGD",
+                amount: 100,
+                currency: "USD",
               },
             },
           ],
@@ -162,7 +234,7 @@ const shippingController = {
       const shippingRate = rateResponse.data.output.rateReplyDetails;
       res.json({ shippingRate });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(500).json({ error: error });
     }
   },
@@ -229,6 +301,7 @@ const shippingController = {
     console.log(req.body);
     ("");
     const { packages, country, postal_code, from_postal_code } = req.body;
+    console.log(packages);
     // const { recipient, packages, sender, addons, date } = req.body;
     // const { country: senderCountry } = sender;
     // const { quantity, description, category, value, weight } =
