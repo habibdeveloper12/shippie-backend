@@ -7,7 +7,7 @@ import {
   getCountryTelCode,
 } from "../../../../util/countries";
 import ClipLoader from "react-spinners/ClipLoader";
-import { setPackageAddon, updateDate } from "../../../../store/formSlice";
+
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
@@ -44,11 +44,7 @@ const RateCalculatorReal = () => {
   });
   const [shipping, setShipping] = useState();
   const [loading, setLoading] = useState(false);
-  const handleDate = (e) => {
-    e.preventDefault();
-    const convertedDate = convertDate(e.target.value);
-    dispatch(updateDate(convertedDate));
-  };
+
   const countryOptions = COUNTRIES.map(({ name, iso2, prefix }) => ({
     label: `${name}`,
     value: iso2,
@@ -65,7 +61,8 @@ const RateCalculatorReal = () => {
   const onSubmit = async (value) => {
     setLoading(true);
     setShipping(false);
-    dispatch(setPackageAddon(value.packages));
+
+    // dispatch(setPackageAddon(value.packages));
     console.log(value.packages);
     try {
       const res = await axios.post(
@@ -193,7 +190,7 @@ const RateCalculatorReal = () => {
                         </div>
 
                         <p className="font-semibold">to</p>
-                        <div className=" ml-11">
+                        <div className=" md:ml-11">
                           <div className=" pill-button border-2 border-[#844FFA] rounded-full relative flex items-center text-[#9450FA] w-full max-w-[280px] md:w-[240px] hover:cursor-pointer px-3 pl-4 md:pl-3">
                             <select
                               id="recipientCountry"

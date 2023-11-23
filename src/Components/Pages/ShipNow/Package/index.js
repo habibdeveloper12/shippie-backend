@@ -58,6 +58,7 @@ const Package = () => {
   const handleDate = (e) => {
     e.preventDefault();
     const convertedDate = convertDate(e.target.value);
+    console.log(e.target.value);
     dispatch(updateDate(convertedDate));
   };
 
@@ -85,7 +86,7 @@ const Package = () => {
       </label>
       <select
         className="rounded-xl border border-border-gray shadow-border focus:border-light-purple focus:shadow-border-focus focus:outline-none w-full  h-[40px] appearance-none bg-transparent pl-3 pr-6"
-        {...register(`packages.date`, {
+        {...register(`date`, {
           onChange: handleDate,
         })}
         defaultValue="Select Date"

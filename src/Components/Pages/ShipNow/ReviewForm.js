@@ -44,6 +44,7 @@ const ReviewForm = () => {
     (async () => {
       try {
         setLoading(true);
+        console.log(form);
         const res = await axios.post(
           process.env.NODE_ENV === "production"
             ? "/api/getShippingRate"
@@ -62,7 +63,7 @@ const ReviewForm = () => {
           const year = date.getFullYear();
           return `${day}-${month}-${year}`;
         }
-
+        console.log(firstService?.commit?.dateDetail?.dayFormat);
         setShippingDetails({
           firstService: {
             serviceName: firstService?.serviceName,

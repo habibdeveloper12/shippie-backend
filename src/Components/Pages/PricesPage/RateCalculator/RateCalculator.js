@@ -14,7 +14,7 @@ const RateCalculator = () => {
           <div className="container flex mx-auto max-w-5xl 2xl:max-w-6xl mx-auto sm:px-5  ">
             <div className=" w-full">
               <div className=" mx-auto">
-                <div className="rounded-xl overflow-hidden flex items-center justify-center ">
+                <div className="rounded-xl overflow-hidden flex md:flex-row flex-col items-center justify-center pr-7 ">
                   <div className="bg-white">
                     <div className="flex flex-col">
                       <div className="pl-16 grid grid-cols-[56px_auto] md:flex items-center gap-y-3 md:gap-y-0 md:gap-x-6 mt-6">
@@ -290,12 +290,12 @@ const RateCalculator = () => {
                     </div>
                   </div>
 
-                  <div className="bg-white md:px-12 py-6 relative mt-6">
+                  <div className="bg-white md:px-12 md:py-6 sm:py-1 relative mt-6">
                     <button
                       onClick={() => navigate("/get-a-quote")}
                       type="button"
                       id="get-a-quote-button"
-                      className="pill-button button-hover b cursor-pointer select-none flex items-center justify-center focus:outline-purple-200  hover:bg-[#6211cb] bg-[#844ffa]  w-[calc(100%-6rem)] max-w-[280px] md:w-[180px] h-[40px] mx-auto font-bold text-white rounded-full disabled:bg-disabled-purple disabled:border-transparent"
+                      className="pill-button button-hover cursor-pointer select-none flex items-center justify-center focus:outline-purple-200  hover:bg-[#6211cb] bg-[#844ffa]  w-[calc(100%-6rem)] max-w-[280px] w-[180px] h-[40px] mx-auto font-bold text-white rounded-full disabled:bg-disabled-purple disabled:border-transparent"
                     >
                       Get A Quote
                     </button>

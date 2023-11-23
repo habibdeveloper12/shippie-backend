@@ -2,9 +2,10 @@ import sc from "states-cities-db";
 
 const COUNTRIES = sc.getCountries();
 
-const getCountryTelCode = country => country && COUNTRIES.find(({ iso2 }) => iso2 === country).prefix;
+const getCountryTelCode = (country) =>
+  country && COUNTRIES.find(({ iso2 }) => iso2 === country).prefix;
 
-const states = country => {
+const states = (country) => {
   let a = sc.getStates(country);
   console.log(a);
 };
@@ -12,18 +13,39 @@ const states = country => {
 export { COUNTRIES, getCountryTelCode, states };
 
 export function convertDate(dateString) {
-  // Parse the date string using the Date constructor and set the timezone offset
-  const date = new Date(dateString)
-  // Extract the year, month, and day from the date object
-  const year = new Date().getUTCFullYear()
-  const month = ("0" + (date.getUTCMonth() + 1)).slice(-2)
-  const day = ("0" + date.getUTCDate()).slice(-2)
+  // Parse the input date string
+  const dateParts = dateString.split(", ");
+  const day = dateParts[0]; // Extract the day part
+  const monthAndDay = dateParts[1].split(" "); // Split the month and day
+  const month = monthAndDay[0]; // Extract the month part
+  const dayOfMonth = monthAndDay[1]; // Extract the day of the month
 
-  // Combine the year, month, and day into a string in ISO format (e.g. "2021-09-07")
-  const isoDate = `${year}-${month}-${day}`
+  // Get the current year
+  const year = new Date().getUTCFullYear();
 
-  console.log("data converted", isoDate)
+  // Convert month name to a numeric representation
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const monthNumeric = months.indexOf(month) + 1;
+
+  // Format the date to 'YYYY-MM-DD'
+  const isoDate = `${year}-${monthNumeric
+    .toString()
+    .padStart(2, "0")}-${dayOfMonth.padStart(2, "0")}`;
+
+  console.log("Data converted:", isoDate);
   return isoDate;
 }
-  export const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  
+export const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];

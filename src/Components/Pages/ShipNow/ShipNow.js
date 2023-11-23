@@ -217,11 +217,11 @@ const ShipNow = () => {
           <p id="step-header" className="text-2xl md:text-3xl font-bold">
             {currentStep === 1 && " Sender’s Particulars"}
             {currentStep === 2 && "Recipient’s Particular"}
-            {currentStep === 3 && "Packaging’s Particular "}
-            {currentStep === 4 && "Addon Particular "}
-            {currentStep === 5 && "Payment Particular "}
+            {currentStep === 3 && "Packaging’s Package Details "}
+            {currentStep === 4 && ""}
+            {currentStep === 5 && "Payment "}
           </p>
-          <p className="text-sm">(Point of contact for packing and billing)</p>
+          <p className="text-sm"></p>
         </div>
         <div className="md:w-[80%] mx-auto flex justify-center">
           <div className="flex w-full max-w-3xl justify-center text-gray-4 text-sm">

@@ -72,7 +72,7 @@ const SenderForm = () => {
                     type="text"
                     id="senderFirstName"
                     className="rounded-xl w-full h-full focus:outline-none pl-3"
-                    placeholder="Jane"
+                    placeholder=""
                     {...register("first_name", { required: "Required" })}
                   />
 
@@ -82,14 +82,11 @@ const SenderForm = () => {
                     type="text"
                     id="senderLastName"
                     className="rounded-xl w-full h-full focus:outline-none pl-3"
-                    placeholder="Doe"
+                    placeholder=""
                     {...register("last_name")}
                   />
                 </div>
-                <p className="min-h-[1rem] text-xs text-subtext-gray mt-0.5 ml-0.5 mb-5">
-                  Person whom JustShip contacts for packing &amp; billing
-                  matters
-                </p>
+                <p className="min-h-[1rem] text-xs text-subtext-gray mt-0.5 ml-0.5 mb-3"></p>
               </div>
               <div className="w-full flex flex-col group">
                 <label
