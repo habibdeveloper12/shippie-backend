@@ -63,7 +63,7 @@ const shippingController = {
   async shippingRate(req, res) {
     const { recipient, packages, sender, addons, date } = req.body;
     const { postal_code, country } = recipient;
-
+    console.log(req.body);
     const { quantity, description, category, value, weight } =
       req.body.packages[0].items[0];
     // console.log("sender", reveiverCountry);
@@ -240,19 +240,20 @@ const shippingController = {
   },
   async RateOisPayment(req, res) {
     const body = req.body;
+
     const data = {
       cust_code: "001098",
       merchant_outlet_id: "01",
       merchant_return_url: body.merchant_return_url,
       terminal_id: "001",
-      description: body.description,
+      description: "",
       currency: "SGD",
       amount: body.amount,
       order_id: "uuid_1_uufghfg5ghghidsd",
       user_fullname: body.user_fullname,
       user_email: body.user_email,
     };
-    console.log(data);
+
     data.hash = generateHMAC(data, "OGVQ4KW90AMBRR5YA34YPLDI3ZJJANGU");
 
     const apiUrl = "https://portalapi.oisbizcraft.com/api/payments";
@@ -298,8 +299,6 @@ const shippingController = {
     });
   },
   async QouteShipping(req, res) {
-    console.log(req.body);
-    ("");
     const { packages, country, postal_code, from_postal_code } = req.body;
     console.log(packages);
     // const { recipient, packages, sender, addons, date } = req.body;
