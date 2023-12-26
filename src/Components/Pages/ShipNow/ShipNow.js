@@ -217,7 +217,7 @@ const ShipNow = () => {
           <p id="step-header" className="text-2xl md:text-3xl font-bold">
             {currentStep === 1 && " Sender’s Particulars"}
             {currentStep === 2 && "Recipient’s Particular"}
-            {currentStep === 3 && "Packaging’s Package Details "}
+            {currentStep === 3 && " Package Details "}
             {currentStep === 4 && ""}
             {currentStep === 5 && "Payment "}
           </p>

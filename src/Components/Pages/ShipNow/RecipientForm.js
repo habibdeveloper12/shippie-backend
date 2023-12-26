@@ -55,13 +55,13 @@ const RecipientForm = () => {
             </label>
             <div
               id="recipientNamecontainer"
-              className={`mt-1 mb-6 relative border rounded-xl flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-border-dark-gray shadow-border ${
+              className={`mt-1 mb-6 relative  flex items-center h-10  border-0 border-b-1 border-primary-focus  focus:border-0 focus:border-b-2 ${
                 errors.name && "border-rose-500"
               }`}
             >
               <div className="relative flex items-center h-full z-[2] w-full">
                 <input
-                  className="focus:outline-none pl-3 w-full h-full rounded-xl pr-8 text-black"
+                  className="focus:outline-none pl-3 w-full h-full  border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 pr-8 text-black"
                   maxLength="80"
                   id="recipientName"
                   type="text"
@@ -84,11 +84,11 @@ const RecipientForm = () => {
             </label>
             <div
               id="recipientEmailcontainer"
-              className="mt-1 mb-6 relative border rounded-xl flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-border-dark-gray shadow-border"
+              className="mt-1 mb-6 relative flex items-center h-10 "
             >
               <div className="relative flex items-center h-full z-[2] w-full">
                 <input
-                  className="focus:outline-none pl-3 w-full h-full rounded-xl pr-8 text-black text-black"
+                  className="focus:outline-none pl-3 w-full h-full border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 pr-8 text-black text-black"
                   maxLength="80"
                   id="recipientEmail"
                   type="email"
@@ -107,7 +107,7 @@ const RecipientForm = () => {
             </label>
             <div
               id="recipientCountrycontainer"
-              className={`mt-1 mb-6 relative border rounded-xl flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-border-dark-gray shadow-border ${
+              className={`mt-1 mb-6 relative  flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2  ${
                 errors.country && "border-rose-500"
               }`}
             >
@@ -184,7 +184,7 @@ const RecipientForm = () => {
               Recipient's Mobile
             </label>
             <div
-              className={`flex h-10 mt-1 mb-6 relative rounded-xl border focus-within:border-light-purple focus-within:shadow-border-focus border-border-dark-gray shadow-border ${
+              className={`flex h-10 mt-1 mb-6 relative border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 ${
                 (errors.country_code || errors.mobile) && "border-rose-500"
               }`}
             >
@@ -216,11 +216,11 @@ const RecipientForm = () => {
                   {selectedCountryCode}
                 </div>
               </div>
-              <hr className="h-2/3 self-center border-l border-border-gray group-focus-within:border-light-purple" />
+              <hr className="h-2/3 self-center  " />
               <input
                 type="tel"
                 id="recipientMobileNo"
-                className="block w-full pl-3 pr-10 py-2.5 text-gray-4 disabled:bg-gray-2 text-sm rounded-xl focus:outline-none"
+                className="block w-full pl-3 pr-10 py-2.5 text-gray-4 disabled:bg-gray-2 text-sm border-0  border-b-1   border-primary-focus  focus:border-0 focus:border-b-26  focus:outline-none"
                 {...register("mobile", {
                   required: "Required",
                   minLength: 8,
@@ -263,13 +263,13 @@ const RecipientForm = () => {
             </label>
             <div
               id="recipientAddresscontainer"
-              className={`mt-1 mb-6 relative border rounded-xl flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-border-dark-gray shadow-border ${
+              className={`mt-1 mb-6 relative  flex items-center h-10 border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 ${
                 errors.address && "border-rose-500"
               }`}
             >
               <div className="relative flex items-center h-full z-[2] w-full">
                 <input
-                  className="focus:outline-none pl-3 w-full h-full rounded-xl pr-8 text-black"
+                  className="focus:outline-none pl-3 w-full h-full focus:border-0 pr-8 text-black"
                   maxLength="80"
                   id="recipientAddress"
                   type="text"
@@ -314,13 +314,13 @@ const RecipientForm = () => {
             </label>
             <div
               id="recipientAddresscontainer"
-              className={`mt-1 mb-6 relative border rounded-xl flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-border-dark-gray shadow-border ${
+              className={`mt-1 mb-6 relative  flex items-center h-10 border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 ${
                 errors.address1 && "border-rose-500"
               }`}
             >
               <div className="relative flex items-center h-full z-[2] w-full">
                 <input
-                  className="focus:outline-none pl-3 w-full h-full rounded-xl pr-8 text-black"
+                  className="focus:outline-none pl-3 w-full h-full focus:border-0 pr-8 text-black"
                   maxLength="80"
                   id="recipientAddress"
                   type="text"
@@ -363,13 +363,13 @@ const RecipientForm = () => {
             </label>
             <div
               id="recipientPostalCodecontainer"
-              className={`mt-1 mb-6 relative border rounded-xl flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-border-dark-gray shadow-border ${
+              className={`mt-1 mb-6 relative  flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 ${
                 errors.postal_code && "border-rose-500"
               }`}
             >
               <div className="relative flex items-center h-full z-[2] w-full">
                 <input
-                  className="focus:outline-none pl-3 w-full h-full rounded-xl pr-8 text-black"
+                  className="focus:outline-none focus:border-0 pl-3 w-full h-full rounded-xl pr-8 text-black"
                   maxLength="80"
                   id="recipientPostalCode"
                   type="text"
@@ -415,13 +415,13 @@ const RecipientForm = () => {
                 </label>
                 <div
                   id="recipientCitycontainer"
-                  className={`mt-1 mb-6 relative border rounded-xl flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-error-red shadow-border-error ${
+                  className={`mt-1 mb-6 relative  flex items-center h-10 focus-within:border-light-purple border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 ${
                     errors.city && "border-rose-500"
                   }`}
                 >
                   <div className="relative flex items-center h-full z-[2] w-full">
                     <input
-                      className="focus:outline-none pl-3 w-full h-full rounded-xl pr-8 text-black"
+                      className="focus:outline-none pl-3 w-full h-full focus:border-0 pr-8 text-black"
                       maxLength="80"
                       id="recipientCity"
                       type="text"

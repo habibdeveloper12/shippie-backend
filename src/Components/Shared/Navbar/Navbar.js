@@ -76,7 +76,7 @@ const Navbar = () => {
                 }`
               }
             >
-              Ship Now
+              Send Parcel
             </NavLink>
             {/* cancle button */}
             <button
@@ -104,7 +104,7 @@ const Navbar = () => {
           {/* website */}
           <div className="hidden ml-auto md:block md:self-stretch basis-4/5 md:flex-none ">
             <div className="h-full flex md:gap-x-6 lg:gap-x-8 xl:gap-x-10 justify-between items-center relative">
-              <NavLink
+              {/* <NavLink
                 onClick={() => setCountries(!countries)}
                 to={"countries"}
                 className={({ isActive }) =>
@@ -114,7 +114,8 @@ const Navbar = () => {
                 }
               >
                 Countries
-              </NavLink>
+                
+              </NavLink> */}
 
               {/* <NavLink
                 onClick={() => setFeatures(!features)}
@@ -128,7 +129,7 @@ const Navbar = () => {
                 Features
               </NavLink> */}
 
-              <NavLink
+              {/* <NavLink
                 onClick={() => setPrice(!price)}
                 to={"prices"}
                 className={({ isActive }) =>
@@ -150,9 +151,9 @@ const Navbar = () => {
                 }
               >
                 Learn
-              </NavLink>
+              </NavLink> */}
 
-              {user && (
+              <>
                 <NavLink
                   to={"dashboard"}
                   className={({ isActive }) =>
@@ -163,7 +164,18 @@ const Navbar = () => {
                 >
                   Dashboard
                 </NavLink>
-              )}
+                <NavLink
+                  to={"track-panel"}
+                  className={({ isActive }) =>
+                    `rounded-md text-[13px] font-semibold  ${
+                      isActive ? "text-purple-500" : "text-black"
+                    }`
+                  }
+                >
+                  Track Panel
+                </NavLink>
+              </>
+
               <NavLink
                 onClick={() => setPackages(!packages)}
                 to={"Packages"}
@@ -194,7 +206,7 @@ const Navbar = () => {
                   }`
                 }
               >
-                Ship Now
+                Send Parcel
               </NavLink>
               <Header />
               {user ? (
@@ -838,7 +850,7 @@ const Navbar = () => {
                   }`
                 }
               >
-                Ship Now
+                Send Parcel
               </NavLink>
 
               <div className=" flex flex-col gap-4 mt-8">

@@ -54,7 +54,7 @@ const Login = () => {
     navigate(from, { replace: true });
   }
   return (
-    <div className="lg:flex justify-center items-center">
+    <div className="lg:flex justify-center items-center bg-[url('https://www.freecodecamp.org/news/content/images/2022/09/jonatan-pie-3l3RwQdHRHg-unsplash.jpg')]">
       <div className="lg:w-1/2 xl:max-w-screen-sm mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
         <h2
           className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
@@ -73,7 +73,7 @@ const Login = () => {
               </div>
               <input
                 onBlur={(e) => setEmail(e.target.value)}
-                className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                className="w-full text-lg py-2 border-b border-gray-300  focus:outline-none focus:border-indigo-500"
                 type=""
                 placeholder=""
               />

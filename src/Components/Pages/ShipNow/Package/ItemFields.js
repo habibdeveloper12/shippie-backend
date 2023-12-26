@@ -50,7 +50,7 @@ const ItemFields = ({ packageIndex, control, register }) => {
                                     type="text"
                                     id="description-p0i0"
                                     className={`focus:outline-none placeholder:text-placeholder-gray  px-1 h-full rounded-xl w-full`}
-                                    placeholder="Box of Bengawan Solo Pineapple Tarts"
+                                    placeholder=""
                                     {...register(
                                         `packages.${packageIndex}.items.${id}.description`,
                                         { required: "Required", maxLength: 30, minLength: 4 }

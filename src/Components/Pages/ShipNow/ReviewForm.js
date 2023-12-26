@@ -139,7 +139,7 @@ const ReviewForm = () => {
       merchant_return_url: "https://shippee.sg/thanks",
       terminal_id: "001",
       // description: form?.packages[0]?.items[0].description,
-      description: form?.packages[0]?.items[0].description,
+      description: "",
       currency: "SGD",
       amount: (shippingRate * 100).toFixed(3),
       order_id: "uuid_1_uufghfg5ghghierdsd",
@@ -147,17 +147,14 @@ const ReviewForm = () => {
       user_fullname: form.sender.first_name,
       user_email: form.sender.email,
     };
+    console.log(data);
     try {
       if (shippingRate > 0) {
         setLoading(true);
         country
           ? setShippingRate(shippingDetails?.secondService?.cost)
           : setShippingRate(shippingDetails?.firstService?.cost);
-        if (
-          form.sender.email &&
-          form.sender.first_name &&
-          form?.packages[0]?.items[0].description
-        ) {
+        if (form.sender.email && form.sender.first_name) {
           const apiUrl =
             process.env.NODE_ENV === "production"
               ? "api/request-payment"
@@ -268,10 +265,10 @@ const ReviewForm = () => {
                 value={shippingDetails?.firstService?.cost}
                 onChange={onRadioChange}
               /> */}
-              <div>
+              <div className="px-3">
                 <p className="font-bold text-lg text-dark-purple">shipping</p>
                 <p className="text-sm text-gray-500">
-                  Delivery on {shippingDetails?.firstService?.date}
+                  Estimated Delivery on {shippingDetails?.firstService?.date}
                 </p>
               </div>
             </label>

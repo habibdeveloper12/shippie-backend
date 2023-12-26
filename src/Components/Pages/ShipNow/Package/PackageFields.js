@@ -213,20 +213,6 @@ const PackageFields = ({
                       </div>
                     </div>
 
-                    <p className="text-xs text-subtext-gray ">
-                      For large fragile items like paintings, speakers,
-                      monitors, and bicycles, please&nbsp;
-                      <a
-                        href="https://wa.me/6591187971"
-                        className="text-dark-purple"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        tabIndex="-1"
-                      >
-                        WhatsApp us&nbsp;
-                      </a>
-                      for a custom quote.
-                    </p>
                   </div>
                 </div>
 
