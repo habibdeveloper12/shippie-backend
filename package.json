@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "NODE_ENV=production node index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
-  "author": "Julien Bisconti <julienbi@unity3d.com>",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "@easypost/api": "^5.10.1",
