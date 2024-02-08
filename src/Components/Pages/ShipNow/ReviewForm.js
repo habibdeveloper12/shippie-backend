@@ -46,9 +46,7 @@ const ReviewForm = () => {
         setLoading(true);
         console.log(form);
         const res = await axios.post(
-          process.env.NODE_ENV === "production"
-            ? "/api/getShippingRate"
-            : "https://shippie.onrender.com/api/getShippingRate",
+          "https://shippie.onrender.com/api/getShippingRate",
           form
         );
 
@@ -155,10 +153,7 @@ const ReviewForm = () => {
           ? setShippingRate(shippingDetails?.secondService?.cost)
           : setShippingRate(shippingDetails?.firstService?.cost);
         if (form.sender.email && form.sender.first_name) {
-          const apiUrl =
-            process.env.NODE_ENV === "production"
-              ? "api/request-payment"
-              : "https://shippie.onrender.com/api/request-payment"; // Replace with your actual backend API URL
+          const apiUrl = "https://shippie.onrender.com/api/request-payment"; // Replace with your actual backend API URL
 
           axios
             .post(apiUrl, data)

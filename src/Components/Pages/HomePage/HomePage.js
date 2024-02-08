@@ -20,10 +20,8 @@ const HomePage = () => {
     const cust_code = "001008";
     const merchant_outlet_id = "01";
     const terminal_id = "001";
-    const merchant_return_url =
-      process.env.NODE_ENV === "production"
-        ? "/thanks"
-        : "http://localhost:3001/thanks";
+    const merchant_return_url = "/thanks";
+
     // const description = `Shipment by ${sender.first_name} ${sender.last_name} to ${recipient.name}`;
     const description = `Shipment by Habib`;
     const currency = "SGD";

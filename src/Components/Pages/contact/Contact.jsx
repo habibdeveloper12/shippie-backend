@@ -15,12 +15,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        process.env.NODE_ENV === "production"
-          ? "/api/contact"
-          : "https://shippie.onrender.com/api/contact",
-        emailData
-      );
+      await axios.post("https://shippie.onrender.com/api/contact", emailData);
       alert("Email sent successfully!");
     } catch (error) {
       console.error("Error sending email:", error);

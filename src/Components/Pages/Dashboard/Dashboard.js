@@ -19,11 +19,7 @@ const Dashboard = () => {
   );
 
   let fetchData = () => {
-    fetch(
-      (process.env.NODE_ENV === "production"
-        ? "/api/orders/"
-        : "https://shippie.onrender.com/api/orders/") + userid
-    )
+    fetch("https://shippie.onrender.com/api/orders/" + userid)
       .then((response) => response.json())
       .then((json) => sortOrders(json))
       .catch((err) => console.log(err));

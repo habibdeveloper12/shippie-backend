@@ -30,10 +30,7 @@ const CheckoutForm = () => {
       user_email: email,
     };
     if (email && name) {
-      const apiUrl =
-        process.env.NODE_ENV === "production"
-          ? "api/request-payment"
-          : "https://shippie.onrender.com/api/request-payment"; // Replace with your actual backend API URL
+      const apiUrl = "https://shippie.onrender.com/api/request-payment"; // Replace with your actual backend API URL
 
       axios
         .post(apiUrl, data)
