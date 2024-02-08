@@ -33,7 +33,7 @@ const CheckoutForm = () => {
       const apiUrl =
         process.env.NODE_ENV === "production"
           ? "api/request-payment"
-          : "https://shippie-backend.vercel.app/api/request-payment"; // Replace with your actual backend API URL
+          : "https://shippie.onrender.com/api/request-payment"; // Replace with your actual backend API URL
 
       axios
         .post(apiUrl, data)

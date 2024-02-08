@@ -68,7 +68,7 @@ const RateCalculatorReal = () => {
       const res = await axios.post(
         process.env.NODE_ENV === "production"
           ? "/api/getqoute"
-          : "https://shippie-backend.vercel.app/api/getqoute",
+          : "https://shippie.onrender.com/api/getqoute",
         {
           packages: value.packages,
           country: selectedCountry,

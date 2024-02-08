@@ -18,7 +18,7 @@ const Contact = () => {
       await axios.post(
         process.env.NODE_ENV === "production"
           ? "/api/contact"
-          : "https://shippie-backend.vercel.app/api/contact",
+          : "https://shippie.onrender.com/api/contact",
         emailData
       );
       alert("Email sent successfully!");

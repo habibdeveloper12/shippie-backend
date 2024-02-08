@@ -48,7 +48,7 @@ const ReviewForm = () => {
         const res = await axios.post(
           process.env.NODE_ENV === "production"
             ? "/api/getShippingRate"
-            : "https://shippie-backend.vercel.app/api/getShippingRate",
+            : "https://shippie.onrender.com/api/getShippingRate",
           form
         );
 
@@ -158,7 +158,7 @@ const ReviewForm = () => {
           const apiUrl =
             process.env.NODE_ENV === "production"
               ? "api/request-payment"
-              : "https://shippie-backend.vercel.app/api/request-payment"; // Replace with your actual backend API URL
+              : "https://shippie.onrender.com/api/request-payment"; // Replace with your actual backend API URL
 
           axios
             .post(apiUrl, data)
