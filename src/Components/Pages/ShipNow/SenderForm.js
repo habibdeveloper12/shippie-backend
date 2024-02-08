@@ -60,7 +60,7 @@ const SenderForm = () => {
             <div className="w-[85%] md:w-[70%] mx-auto pt-6 pb-10 md:pt-8">
               <div className="relative">
                 <div className="grid grid-cols-2">
-                  <p>Full Name</p>
+                  <p>Sender Full Name</p>
                   <p></p>
                 </div>
                 {/* text-sm  border-gray-400 outline-none opacity-50 focus:border-blue-400 */}
@@ -133,31 +133,35 @@ const SenderForm = () => {
               <div className="group">
                 <label
                   className="block font-normal text-black text-sm group-focus-within:text-dark-purple"
-                  for="senderMobileNo"
+                  for="recipientMobileNo"
                 >
-                  Sender's Mobile
+                  Recipient's Mobile
                 </label>
                 <div
-                  className={`flex h-10 mt-1 mb-6 relative  border-error-red shadow-border-error  ${
-                    errors.mobile && "border-rose-500"
+                  className={`flex h-10 mt-1 mb-6 relative border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 ${
+                    (errors.country_code || errors.mobile) && "border-rose-500"
                   }`}
                 >
                   <div className="relative text-gray-4 text-sm">
+                    <label for="country-call-code" hidden>
+                      country calling code
+                    </label>
                     <select
-                      id="country-call-code"
                       name="country-call-code"
-                      className="absolute w-full h-full opacity-0 disabled:bg-gray-2 cursor-pointer  border-0 border-b-2 border-primary-focus  focus:border-0 focus:border-b-2"
+                      className="absolute w-full h-full opacity-0 disabled:bg-gray-2 cursor-pointer"
                       tabindex="-1"
+                      defaultValue={""}
                       {...register("country_code")}
-                      defaultValue={selectedCountry}
                       onChange={onCountryChange}
                     >
                       <option value="" disabled></option>
-                      {countryOptions.map((option, index) => (
-                        <option key={index} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
+                      {countryOptions
+                        .filter((option) => option.value !== "SG")
+                        .map((option, index) => (
+                          <option key={index} value={option.code}>
+                            {option.label} {option.code}
+                          </option>
+                        ))}
                     </select>
                     <div
                       className="h-full flex items-center min-w-[40px] px-3 justify-center"
@@ -166,23 +170,39 @@ const SenderForm = () => {
                       {selectedCountry}
                     </div>
                   </div>
-                  <hr className="h-2/3 self-center " />
+                  <hr className="h-2/3 self-center  " />
                   <input
                     type="tel"
-                    id="senderMobileNo"
-                    className="block w-full pl-3 pr-10 py-2.5 text-gray-4 disabled:bg-gray-2 text-sm  border-0 border-b-2 border-primary-focus  focus:border-0 focus:border-b-2 focus:outline-none"
+                    id="recipientMobileNo"
+                    className="block w-full pl-3 pr-10 py-2.5 text-gray-4 disabled:bg-gray-2 text-sm border-0  border-b-1   border-primary-focus  focus:border-0 focus:border-b-26  focus:outline-none"
                     {...register("mobile", {
                       required: "Required",
-                      minLength: 8,
-                      maxLength: 8,
                     })}
                   />
                   {errors.mobile && (
-                    <p className="min-h-[1rem] text-xs text-error-red absolute top-10 text-red-500 mt-0.5 ml-0.5 mb-5">
-                      Mobile number must be 8 digits
+                    <p className="min-h-[1rem] text-xs text-error-red absolute top-10 mt-0.5 ml-0.5 text-rose-500">
+                      Mobile Number must be of 8 to 15 digits
                     </p>
                   )}
-                  {/* <p className="min-h-[1rem] text-xs text-error-red absolute top-10"></p> */}
+                  <svg
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    stroke="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-[18px] inline-block absolute right-0.5 top-[50%] -translate-y-[50%] group-focus-within:invisible mr-2 stroke-dark-purple"
+                  >
+                    <circle
+                      r="10"
+                      transform="matrix(1 0 0 -1 11 11)"
+                      strokeWidth="2"
+                    ></circle>
+                    <path
+                      d="M6 11.9375L9.04348 15L16 8"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    ></path>
+                  </svg>
+                  <p className="min-h-[1rem] text-xs text-error-red absolute top-10"></p>
                 </div>
               </div>
               <label for="shipping-from" className="font-normal text-black">

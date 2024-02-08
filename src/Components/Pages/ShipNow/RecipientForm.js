@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 const RecipientForm = () => {
   const dispatch = useDispatch();
   const { recipient, sender } = useSelector((state) => state.form);
-  let [selectedCountry, setSelectedCountry] = useState();
-  let [selectedCountryCode, setSelectedCountryCode] = useState();
+  let [selectedCountry, setSelectedCountry] = useState("Singapore");
+  let [selectedCountryCode, setSelectedCountryCode] = useState("+93");
   console.log(recipient);
   // console.log(sender);
   const {
@@ -18,7 +18,6 @@ const RecipientForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: recipient });
-
   const countryOptions = COUNTRIES.map(({ name, iso2, prefix }) => ({
     label: `${name}`,
     value: iso2,
@@ -45,35 +44,37 @@ const RecipientForm = () => {
   return (
     <div className="bg-white w-full md:rounded-xl">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-[85%] md:w-[50%] mx-auto pt-6 md:pt-8 pb-3">
-          <div className="w-full flex flex-col group">
-            <label
-              for="recipientName"
-              className="font-normal text-black w-max group-focus-within:text-dark-purple"
-            >
-              Recipient's Name
-            </label>
+        <div className="w-full md:w-[70%] mx-auto pt-6 md:pt-8 pb-3">
+          <div className="relative">
+            <div className="grid grid-cols-2">
+              <p>Recipient Full Name</p>
+              <p></p>
+            </div>
+            {/* text-sm  border-gray-400 outline-none opacity-50 focus:border-blue-400 */}
             <div
-              id="recipientNamecontainer"
-              className={`mt-1 mb-6 relative  flex items-center h-10  border-0 border-b-1 border-primary-focus  focus:border-0 focus:border-b-2 ${
-                errors.name && "border-rose-500"
+              className={`mt-1 relative flex items-center h-10  ${
+                errors.first_name && "border-rose-500"
               }`}
             >
-              <div className="relative flex items-center h-full z-[2] w-full">
-                <input
-                  className="focus:outline-none pl-3 w-full h-full  border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2 pr-8 text-black"
-                  maxLength="80"
-                  id="recipientName"
-                  type="text"
-                  {...register("name", { required: "Required" })}
-                />
-              </div>
-              {errors.name && (
-                <p className="min-h-[1rem] text-xs text-error-red absolute top-10 mt-0.5 ml-0.5 text-rose-500">
-                  Required
-                </p>
-              )}
+              <input
+                type="text"
+                id="recipientFirstName"
+                className=" border-0 border-b-2 border-primary-focus  focus:border-0 focus:border-b-2 w-full h-full focus:outline-none pl-3"
+                placeholder=""
+                {...register("first_name", { required: "Required" })}
+              />
+
+              <hr className="h-2/3 md:ml-2  self-center border-l border-border-gray group-focus-within:border-light-purple" />
+
+              <input
+                type="text"
+                id="recipientLastName"
+                className="md:ml-4 border-0 border-b-2 border-primary-focus  focus:border-0 focus:border-b-2 w-full h-full focus:outline-none pl-3"
+                placeholder=""
+                {...register("last_name")}
+              />
             </div>
+            <p className="min-h-[1rem] text-xs text-subtext-gray mt-0.5 ml-0.5 mb-3"></p>
           </div>
           <div className="w-full flex flex-col group">
             <label
@@ -94,84 +95,6 @@ const RecipientForm = () => {
                   type="email"
                   {...register("email")}
                 />
-              </div>
-              <p className="min-h-[1rem] text-xs text-error-red absolute top-10 mt-0.5 ml-0.5 hidden"></p>
-            </div>
-          </div>
-          <div className="w-full flex flex-col group">
-            <label
-              for="recipientCountry"
-              className="font-normal text-black w-max group-focus-within:text-dark-purple"
-            >
-              Country
-            </label>
-            <div
-              id="recipientCountrycontainer"
-              className={`mt-1 mb-6 relative  flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2  ${
-                errors.country && "border-rose-500"
-              }`}
-            >
-              {watch("country") && (
-                <svg
-                  viewBox="0 0 22 22"
-                  fill="none"
-                  stroke="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-[18px] inline-block absolute right-0 mr-2 group-focus-within:invisible stroke-dark-purple z-[2]"
-                >
-                  <circle
-                    r="10"
-                    transform="matrix(1 0 0 -1 11 11)"
-                    strokeWidth="2"
-                  ></circle>
-                  <path
-                    d="M6 11.9375L9.04348 15L16 8"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  ></path>
-                </svg>
-              )}
-              <div className="absolute h-full w-full flex items-center top-0 z-[1]">
-                <select
-                  className="focus:outline-none w-full h-full rounded-xl appearance-none bg-transparent hover:cursor-pointer pl-3"
-                  tabindex="0"
-                  {...register("country", { required: true })}
-                  defaultValue={""}
-                  onChange={onCountryChange}
-                >
-                  <option value="" disabled></option>
-                  {countryOptions
-                    .filter((option) => option.value !== "SG")
-                    .map((option, index) => (
-                      <option key={index} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                </select>
-                {errors.country && (
-                  <p className="min-h-[1rem] text-xs text-error-red absolute top-10 mt-0.5 ml-0.5 text-rose-500">
-                    Required
-                  </p>
-                )}
-              </div>
-              <div className="absolute right-0 pr-[1.6rem] h-full flex items-center pointer-events-none z-[2] group-focus-within:invisible">
-                <svg
-                  width="16px"
-                  height="12px"
-                  className="w-[14px] h-[9px] mt-1 mr-2.5"
-                  viewBox="0 0 16 11"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M1 1L8 9L15 1"
-                    stroke="#373F41"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  ></path>
-                </svg>
-                <hr className="h-2/3 self-center border-l border-border-gray group-focus-within:border-light-purple mr-2" />
               </div>
               <p className="min-h-[1rem] text-xs text-error-red absolute top-10 mt-0.5 ml-0.5 hidden"></p>
             </div>
@@ -201,13 +124,11 @@ const RecipientForm = () => {
                   onChange={onCountryCodeChange}
                 >
                   <option value="" disabled></option>
-                  {countryOptions
-                    .filter((option) => option.value !== "SG")
-                    .map((option, index) => (
-                      <option key={index} value={option.code}>
-                        {option.label} {option.code}
-                      </option>
-                    ))}
+                  {countryOptions.map((option, index) => (
+                    <option key={index} value={option.code}>
+                      {option.label} {option.code}
+                    </option>
+                  ))}
                 </select>
                 <div
                   className="h-full flex items-center min-w-[40px] px-3 justify-center"
@@ -251,6 +172,86 @@ const RecipientForm = () => {
                 ></path>
               </svg>
               <p className="min-h-[1rem] text-xs text-error-red absolute top-10"></p>
+            </div>
+          </div>
+          <div className="w-full flex flex-col group">
+            <label
+              for="recipientCountry"
+              className="font-normal text-black w-max group-focus-within:text-dark-purple"
+            >
+              Shipping To
+            </label>
+            <div
+              id="recipientCountrycontainer"
+              className={`mt-1 mb-6 relative  flex items-center h-10 focus-within:border-light-purple focus:shadow-border-focus border-0  border-b-2   border-primary-focus  focus:border-0 focus:border-b-2  ${
+                errors.country && "border-rose-500"
+              }`}
+            >
+              {watch("country") && (
+                <svg
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  stroke="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-[18px] inline-block absolute right-0 mr-2 group-focus-within:invisible stroke-dark-purple z-[2]"
+                >
+                  <circle
+                    r="10"
+                    transform="matrix(1 0 0 -1 11 11)"
+                    strokeWidth="2"
+                  ></circle>
+                  <path
+                    d="M6 11.9375L9.04348 15L16 8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  ></path>
+                </svg>
+              )}
+              <div className="absolute h-full w-full flex items-center top-0 z-[1]">
+                <select
+                  className="focus:outline-none w-full h-full rounded-xl appearance-none bg-transparent hover:cursor-pointer pl-3"
+                  tabIndex="0"
+                  {...register("country", {
+                    required: true,
+                  })}
+                  onChange={onCountryChange}
+                  defaultValue={"Singapore"}
+                  placeholder="Singapore"
+                >
+                  <option value="" disabled></option>
+                  {countryOptions.map((option, index) => (
+                    <option key={index} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+
+                {errors.country && (
+                  <p className="min-h-[1rem] text-xs text-error-red absolute top-10 mt-0.5 ml-0.5 text-rose-500">
+                    Required
+                  </p>
+                )}
+              </div>
+              <div className="absolute right-0 pr-[1.6rem] h-full flex items-center pointer-events-none z-[2] group-focus-within:invisible">
+                <svg
+                  width="16px"
+                  height="12px"
+                  className="w-[14px] h-[9px] mt-1 mr-2.5"
+                  viewBox="0 0 16 11"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M1 1L8 9L15 1"
+                    stroke="#373F41"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  ></path>
+                </svg>
+                <hr className="h-2/3 self-center border-l border-border-gray group-focus-within:border-light-purple mr-2" />
+              </div>
+              <p className="min-h-[1rem] text-xs text-error-red absolute top-10 mt-0.5 ml-0.5 hidden"></p>
             </div>
           </div>
 

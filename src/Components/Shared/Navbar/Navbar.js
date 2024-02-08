@@ -172,7 +172,7 @@ const Navbar = () => {
                     }`
                   }
                 >
-                  Track Panel
+                  Track Parcel
                 </NavLink>
               </>
 
@@ -843,7 +843,7 @@ const Navbar = () => {
               </div>
 
               <NavLink
-                to={"dashboard"}
+                to={"shipNow"}
                 className={({ isActive }) =>
                   `py-2 px-8 rounded-full border border-[#844FFA] text-white font-semibold bg-[#844FFA]  hover:bg-[#6621DF]  text-[14px]   ${
                     isActive ? "text-white" : "text-white"
@@ -854,6 +854,50 @@ const Navbar = () => {
               </NavLink>
 
               <div className=" flex flex-col gap-4 mt-8">
+                <>
+                  <NavLink
+                    to={"dashboard"}
+                    className={({ isActive }) =>
+                      `rounded-md text-[14px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
+                        isActive ? "text-purple-500" : "text-black"
+                      }`
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                  <NavLink
+                    to={"track-panel"}
+                    className={({ isActive }) =>
+                      `rounded-md text-[14px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
+                        isActive ? "text-purple-500" : "text-black"
+                      }`
+                    }
+                  >
+                    Track Parcel
+                  </NavLink>
+                </>
+                <NavLink
+                  onClick={() => setPackages(!packages)}
+                  to={"Packages"}
+                  className={({ isActive }) =>
+                    `rounded-md text-[14px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
+                      isActive ? "text-purple-500" : "text-black"
+                    }`
+                  }
+                >
+                  Packages
+                </NavLink>
+                <NavLink
+                  onClick={() => setContact(!contact)}
+                  to={"contact"}
+                  className={({ isActive }) =>
+                    `rounded-md text-[14px] font-semibold text-[#6211cb] hover:text-[#844ffa]  ${
+                      isActive ? "text-purple-500" : "text-black"
+                    }`
+                  }
+                >
+                  Contact
+                </NavLink>
                 <NavLink
                   to={"getaQuote"}
                   className={({ isActive }) =>
@@ -887,7 +931,7 @@ const Navbar = () => {
                   Sign In
                 </NavLink>
               </div>
-
+              {/* 
               <div className="w-full mt-14">
                 <h1
                   className=" text-[14px]
@@ -1255,7 +1299,7 @@ const Navbar = () => {
                     </NavLink>
                   </nav>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

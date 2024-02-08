@@ -22,7 +22,7 @@ const Dashboard = () => {
     fetch(
       (process.env.NODE_ENV === "production"
         ? "/api/orders/"
-        : "http://localhost:5000/api/orders/") + userid
+        : "https://shippie-backend.vercel.app/api/orders/") + userid
     )
       .then((response) => response.json())
       .then((json) => sortOrders(json))
